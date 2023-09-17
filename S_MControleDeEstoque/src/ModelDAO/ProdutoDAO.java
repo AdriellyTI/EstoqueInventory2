@@ -30,20 +30,23 @@ public class ProdutoDAO {
 	
 	public void insertProduto(ModelProduto produt)  {
 		
-		String url ="INSERT INTO Produtos(idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao) VALUES('"+produt.getId()+"','"+ produt.getPreco()+"','"+ produt.getQuantidade()+"','"+ produt.getIdForn()+"',"+produt.getDescrição()+"')";
+		String url ="INSERT INTO Produto(idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao) VALUES('"+produt.getId()+"','"+produt.getNome()+"','"+ produt.getPreco()+"','"+ produt.getQuantidade()+"','"+ produt.getIdForn()+"',"+produt.getDescrição()+"')";
+		
 		
 		try {
-         conn =new Conexao().getConnection();
 			
-	     conn.prepareStatement(url);
-	    
-		 stm.executeQuery(url);
+			Connection conn =new Conexao().getConnection();
+
+			stm = conn.prepareStatement(url);
+			
+			stm.execute();
+			
+			conn.close();
+
 		
-		stm.close();
-		
-		}catch (SQLException e) {
-			Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE,null,e);		}
-		
+		}catch (Exception e) {
+			 JOptionPane.showInternalMessageDialog(null, e);
+		}
 	}
  
 	
@@ -52,7 +55,7 @@ public class ProdutoDAO {
 		 List <ModelProduto> listaAcesso = new ArrayList<ModelProduto>();
 		 
 		 
-		 String url = "SELECT idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao FROM Produtos";
+		 String url = "SELECT idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao FROM Produto";
 		 
 			try {
 				

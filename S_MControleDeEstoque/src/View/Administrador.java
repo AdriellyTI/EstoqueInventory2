@@ -68,10 +68,10 @@ public class Administrador extends JFrame{
         telefoneField.setText("telefone");
          
         JTextField emailField = new JTextField(20);
-        emailField.setBounds(400,460,580,30);
+        emailField.setBounds(400,470,580,30);
         
         JPasswordField senhaField = new JPasswordField();
-        senhaField.setBounds(400,500,580,30);
+        senhaField.setBounds(400,550,580,30);
         
         
      JButton cadastrarButton = new JButton("SALVAR");  

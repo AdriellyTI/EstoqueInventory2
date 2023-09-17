@@ -54,7 +54,7 @@ public class Logo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 				new Cadastrar();
-				
+
 			}
         });
 	    
