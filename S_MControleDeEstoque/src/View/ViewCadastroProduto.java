@@ -51,18 +51,18 @@ public class ViewCadastroProduto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-//               int id= Integer.parseInt(idField.getText());
-//               String nome=nomeField.getText();
-//               double preco=Double.parseDouble(precoField.getText());
-//               int quantidade=Integer.parseInt(quantField.getText());
-//               int idForn=Integer.parseInt(idFornField.getText());
-//               String descricao= descricaoField.getText();
-//               
-//               
-//               ControllerProduto product= new ControllerProduto();
-//               
-//               product.CadastrarProduto(id, nome, preco, quantidade, idForn, descricao);
-//               
+               int id= Integer.parseInt(idField.getText());
+               String nome=nomeField.getText();
+               double preco=Double.parseDouble(precoField.getText());
+               int quantidade=Integer.parseInt(quantField.getText());
+               int idForn=Integer.parseInt(idFornField.getText());
+               String descricao= descricaoField.getText();
+               
+               
+               ControllerProduto product= new ControllerProduto();
+               
+               product.CadastrarProduto(id, nome, preco, quantidade, idForn, descricao);
+               
 			}
 		});
 		
