@@ -33,16 +33,14 @@ public class ViewEntrar extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		//JLabel nomeLabel = new JLabel("NOME:");
 		JTextField nomeField = new JTextField(20);
-	//	JLabel idLabel = new JLabel("ID:");
 		JTextField senhaField = new JTextField(20);
 		JButton login = new JButton("LOGIN");
 		JButton voltar = new JButton("VOLTAR");
 		
 		
 		JPanel panel = new JPanel();
-		ImageIcon img = new ImageIcon(getClass().getResource("TelaLogin.png"));
+		ImageIcon img = new ImageIcon(getClass().getResource("TelaEntrar.PNG"));
 		JLabel labelImg= new JLabel(img);
 		panel.setLayout(null);
 		
@@ -54,12 +52,11 @@ public class ViewEntrar extends JFrame {
 		int y = (screenSize.height - labelImgHeight) / 2;
 		labelImg.setBounds(x, y, labelImgWidth, labelImgHeight);
 		
-		//nomeLabel.setBounds(350, 40, 150, 100);
-		nomeField.setBounds(520,325,400,35);
-	    nomeField.setBackground(cor);
+		nomeField.setBounds(520,320,400,35);
+	    nomeField.setBackground(Color.white);
 
-	    senhaField.setBounds(520, 425, 400, 35);
-	    senhaField.setBackground(cor);
+	    senhaField.setBounds(520, 420, 400, 35);
+	    senhaField.setBackground(Color.white);
 	    
 	    panel.add(labelImg);
 	    

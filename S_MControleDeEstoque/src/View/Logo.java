@@ -59,7 +59,7 @@ public class Logo extends JFrame {
         });
 	    
 		JButton entrarButton = new JButton("ENTRAR");
-		entrarButton.setBackground(Color.white);	//	entrarButton.setBounds(x + labelWidth / 2 - 75, y + labelHeight + 20, 150, 30);
+		entrarButton.setBackground(Color.white);	
 		entrarButton.setFont(fonte);
 		entrarButton.setBounds(600,560,170,35);
 		entrarButton.addActionListener(new ActionListener() {

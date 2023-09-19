@@ -17,7 +17,7 @@ public class PagamentosDAO {
 	
 	public void insertRecibo(ModelPagamentos recibo) { 
 	
-		String url="INSERT INTO Reciboss (nomeCliente,data,numeroDePecas,valorTotal,formaPagamento) VALUES('"+recibo.getNomeCliente()+"','"+recibo.getDataVenda()+"','"+recibo.getNumeroPecas()+"'.'"+recibo.getValorTotal()+"','"+recibo.getFormaPagamento()+"')";
+		String url="INSERT INTO Recibo (nomeCliente,data,numeroDePecas,valorTotal,formaPagamento) VALUES('"+recibo.getNomeCliente()+"','"+recibo.getDataVenda()+"','"+recibo.getNumeroPecas()+"','"+recibo.getValorTotal()+"','"+recibo.getFormaPagamento()+"')";
 	
          try {
 			

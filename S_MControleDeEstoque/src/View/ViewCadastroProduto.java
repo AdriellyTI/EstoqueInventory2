@@ -14,16 +14,15 @@ import Controller.ControllerProduto;
 
 public class ViewCadastroProduto extends JFrame {
 
-//	parametros de interface
 	JButton cadastrarButton= new JButton("SALVAR");
 	JButton cancelarButton = new JButton("CANCELAR");
 	
-	JTextField idField = new JTextField();
 	JTextField nomeField = new JTextField();
 	JTextField precoField = new JTextField();
 	JTextField quantField = new JTextField();
-	JTextField idFornField= new JTextField();
+	JTextField nomeFornField= new JTextField();
 	JTextField descricaoField = new JTextField();
+	ControllerProduto product= new ControllerProduto();
 	
 
 	public void InitComponents() {
@@ -34,11 +33,10 @@ public class ViewCadastroProduto extends JFrame {
 		label.setBounds(-50,-10,1200,700);
 		panel.setLayout(null);
 		
-		idField.setBounds(220,225,180,25);
 		nomeField.setBounds(220,290,468,25);
 		precoField.setBounds(222,350,172,25);
 		quantField.setBounds(770,350,173,25);
-		idFornField.setBounds(220,410,350,25);
+		nomeFornField.setBounds(220,410,350,25);
 		descricaoField.setBounds(220,470,540,50);
 		
 		cadastrarButton.setBounds(510,580,160,40);
@@ -50,18 +48,15 @@ public class ViewCadastroProduto extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
-               int id= Integer.parseInt(idField.getText());
                String nome=nomeField.getText();
                double preco=Double.parseDouble(precoField.getText());
                int quantidade=Integer.parseInt(quantField.getText());
-               int idForn=Integer.parseInt(idFornField.getText());
+               String nomeForn= nomeFornField.getText();
                String descricao= descricaoField.getText();
+         
+               product.CadastrarProduto(nome, preco, quantidade, nomeForn, descricao);
                
                
-               ControllerProduto product= new ControllerProduto();
-               
-               product.CadastrarProduto(id, nome, preco, quantidade, idForn, descricao);
                
 			}
 		});
@@ -86,11 +81,10 @@ public class ViewCadastroProduto extends JFrame {
 		
 		add(panel);
 		panel.add(label);
-		panel.add(idField);
 		panel.add(nomeField);
 		panel.add(precoField);
 		panel.add(quantField);
-		panel.add(idFornField);
+		panel.add(nomeFornField);
 		panel.add(descricaoField);
 		panel.add(cadastrarButton);
 		panel.add(cancelarButton);

@@ -52,15 +52,15 @@ public class ViewPagamentos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				
-//			String nomeCliente=nomeClienteF.getText();
-//			String dataVenda= dataF.getText();
-//			int numeroPecas=Integer.parseInt(numeroPecasF.getText());
-//			double valorTotal=Double.parseDouble(valorTotalF.getText());
-//			String formaPagamento=formaPagamentoCb.getText();
-//		
-//			recibo= new ControllerPagamentos();
-//			recibo.Pagamentos(nomeCliente, dataVenda, numeroPecas, valorTotal, formaPagamento);
-//			
+			String nomeCliente=nomeClienteF.getText();
+			String dataVenda= dataF.getText();
+			int numeroPecas=Integer.parseInt(numeroPecasF.getText());
+			double valorTotal=Double.parseDouble(valorTotalF.getText());
+			String formaPagamento=formaPagamentoCb.getText();
+		
+			recibo= new ControllerPagamentos();
+			recibo.Pagamentos(nomeCliente, dataVenda, numeroPecas, valorTotal, formaPagamento);
+		
 			}
         }));
 	

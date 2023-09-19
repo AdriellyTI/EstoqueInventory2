@@ -40,7 +40,7 @@ public class Funcionario extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JPanel panel = new JPanel();
-	    ImageIcon img = new ImageIcon(getClass().getResource("TelaCadastroFuncionario.png"));
+	    ImageIcon img = new ImageIcon(getClass().getResource("ImagemCadastroFunc.PNG"));
 		JLabel label = new JLabel(img);
 		panel.setLayout(null);
 		
@@ -54,25 +54,23 @@ public class Funcionario extends JFrame {
 
 		panel.add(label);
 		
-
-       
         JTextField nomeField = new JTextField(20);
         nomeField.setBounds(400,175,550,30);
         
         JTextField usernameField = new JTextField(20);
-        usernameField.setBounds(400,246,550,30);
+        usernameField.setBounds(400,248,550,30);
         
         JTextField dataNascField = new JTextField(20);
         dataNascField.setBounds(400,320,550,30);
         
         JTextField telefoneField = new JTextField(20);
-       telefoneField.setBounds(400,390,550,30);
+       telefoneField.setBounds(400,393,550,30);
         
         JTextField emailField= new JTextField(20);
-       emailField.setBounds(400,450,550,30);
+        emailField.setBounds(400,460,550,30);
        
         JPasswordField senhaField= new JPasswordField(20);
-       senhaField.setBounds(400,520,550,30); 
+       senhaField.setBounds(400,533,550,30); 
 
         JButton cadastrarButton = new JButton("SALVAR");
         cadastrarButton.setBackground(Color.BLACK);

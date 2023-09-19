@@ -16,7 +16,7 @@ public class Conexao {
 		
 		try {
 		    Class.forName("com.mysql.cj.jdbc.Driver");
-		    conn = DriverManager.getConnection("jdbc:mysql://localhost/EstoqueInventtory", "root", "asds2006");
+		    conn = DriverManager.getConnection("jdbc:mysql://localhost/EstoqueM", "root", "asds2006");
 		    
 		} catch (ClassNotFoundException | SQLException e) {
 		    e.printStackTrace();

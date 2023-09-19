@@ -7,20 +7,34 @@ public class ModelProduto {
 	private String nome;
 	private double preco;
 	private int quantidade;
-	private int idForn;
+	private String nomeForn;
 	private String descrição;
 
 	
 	
-	public ModelProduto(int id, String nome, double preco, int quantidade, int idForn, String descrição) {
+	
+	public ModelProduto(int id, String nome, double preco, int quantidade, String nomeForn, String descrição) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 		this.quantidade = quantidade;
-		this.idForn = idForn;
+		this.nomeForn = nomeForn;
 		this.descrição = descrição;
 	}
+	
+	
+
+	public ModelProduto(String nome, double preco, int quantidade, String nomeForn, String descrição) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.quantidade = quantidade;
+		this.nomeForn = nomeForn;
+		this.descrição = descrição;
+	}
+
+
 
 	public ModelProduto() {
 		
@@ -51,14 +65,15 @@ public class ModelProduto {
 		this.quantidade = quantidade;
 	}
 	
-	public int getIdForn() {
-		return idForn;
-	}
 	
-	public void setIdForn(int idForn) {
-		this.idForn = idForn;
+	public String getNomeForn() {
+		return nomeForn;
 	}
-	
+
+	public void setNomeForn(String nomeForn) {
+		this.nomeForn = nomeForn;
+	}
+
 	public String getDescrição() {
 		return descrição;
 	}

@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import Model.ModelProduto;
 
@@ -30,7 +29,7 @@ public class ProdutoDAO {
 	
 	public void insertProduto(ModelProduto produt)  {
 		
-		String url ="INSERT INTO Produto(idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao) VALUES('"+produt.getId()+"','"+produt.getNome()+"','"+ produt.getPreco()+"','"+ produt.getQuantidade()+"','"+ produt.getIdForn()+"',"+produt.getDescrição()+"')";
+		String url ="INSERT INTO produtos (nome,preco,quantidade,nome_fornecedor,descricao) VALUES('"+produt.getNome()+"','"+ produt.getPreco()+"','"+ produt.getQuantidade()+"','"+ produt.getNomeForn()+"','"+produt.getDescrição()+"')";
 		
 		
 		try {
@@ -55,7 +54,7 @@ public class ProdutoDAO {
 		 List <ModelProduto> listaAcesso = new ArrayList<ModelProduto>();
 		 
 		 
-		 String url = "SELECT idProduto,nome,preco,quantidadeEstoque,idFornecedor,descricao FROM Produto";
+		 String url = "SELECT id,nome,preco,quantidade,nome_fornecedor,descricao FROM produtos";
 		 
 			try {
 				
@@ -67,12 +66,11 @@ public class ProdutoDAO {
 
 			 while(rs.next()) {
 				 ModelProduto p= new ModelProduto();
-			     
-				 p.setId(rs.getInt("idProduto"));
+			     p.setId(rs.getInt("id"));
 				 p.setNome(rs.getString("nome"));
 				 p.setPreco(rs.getDouble("preco"));
-				 p.setQuantidade(rs.getInt("quantidadeEstoque"));
-				 p.setIdForn(rs.getInt("idFornecedor"));
+				 p.setQuantidade(rs.getInt("quantidade"));
+				 p.setNomeForn(rs.getString("nome_fornecedor"));
 				 p.setDescrição(rs.getString("descricao"));
 				 
 				 listaAcesso.add(p);
@@ -82,6 +80,6 @@ public class ProdutoDAO {
 				}
 			 return listaAcesso;
 
-
 	 }
+	
 }
