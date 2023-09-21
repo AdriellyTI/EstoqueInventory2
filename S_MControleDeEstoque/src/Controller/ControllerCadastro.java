@@ -17,8 +17,6 @@ import View.ViewFornecedor;
 public class ControllerCadastro {
 
 	
-	
-	
 	public void CadastrarUsuarioAdm(String nome,String userName,String dataNasc,String telefone,String email,String senha ) {
 		
 

@@ -52,8 +52,6 @@ public class ProdutoDAO {
 	 public List<ModelProduto> VerProdutos(){
 		 
 		 List <ModelProduto> listaAcesso = new ArrayList<ModelProduto>();
-		 
-		 
 		 String url = "SELECT id,nome,preco,quantidade,nome_fornecedor,descricao FROM produtos";
 		 
 			try {
@@ -61,6 +59,38 @@ public class ProdutoDAO {
 	             Connection conn =new Conexao().getConnection();
 
 				stm = conn.prepareStatement(url);
+				rs=stm.executeQuery();
+		
+
+			 while(rs.next()) {
+				 ModelProduto p= new ModelProduto();
+			     p.setId(rs.getInt("id"));
+				 p.setNome(rs.getString("nome"));
+				 p.setPreco(rs.getDouble("preco"));
+				 p.setQuantidade(rs.getInt("quantidade"));
+				 p.setNomeForn(rs.getString("nome_fornecedor"));
+				 p.setDescrição(rs.getString("descricao"));
+				 
+				 listaAcesso.add(p);
+			 }
+			 }catch (Exception e) {
+				 JOptionPane.showInternalMessageDialog(null, e);
+				}
+			 return listaAcesso;
+
+	 }
+		
+	 public List<ModelProduto> pesquisarProdutos(String nome){
+		 
+		 List <ModelProduto> listaAcesso = new ArrayList<ModelProduto>();
+		 String url = "SELECT *FROM produtos WHERE nome LIKE ?";
+		 
+			try {
+				
+	             Connection conn =new Conexao().getConnection();
+
+				stm = conn.prepareStatement(url);
+				stm.setString(1, "%"+nome+"%");
 				rs=stm.executeQuery();
 		
 

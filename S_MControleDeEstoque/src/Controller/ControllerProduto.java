@@ -15,9 +15,6 @@ public class ControllerProduto {
 	
 	Connection con;
 	
-//	public ControllerProduto(Connection connection) {
-//		this.con = connection;
-//	}
 	ProdutoDAO Vproduto= new ProdutoDAO();
 	
 	public ControllerProduto() {
@@ -72,12 +69,36 @@ public void preencheTable(JTable tabela) {
 			obj[5]=p.getDescrição();
 			
 			modelo.addRow(obj);
-		
 		}
 	
 		}
-
   
+      public void pesquisarProduto(JTable tabela,String desc) {
+    	  
+    	  List<ModelProduto> lista=  Vproduto.VerProdutos();
+  		   DefaultTableModel modelo= (DefaultTableModel) tabela.getModel();
+  		if (modelo.getRowCount()>0) {
+  			modelo.setRowCount(0);
+  		}
+
+  		ProdutoDAO pr= new ProdutoDAO();
+  		
+  		for(ModelProduto p: pr.pesquisarProdutos(desc)) {
+  			
+  			Object [] obj= new Object[6];
+  			obj[0]=p.getId();
+  			obj[1]= p.getNome();
+  			obj[2]=p.getPreco();
+  			obj[3]=p.getQuantidade();
+  			obj[4]=p.getNomeForn();
+  			obj[5]=p.getDescrição();
+  			
+  			modelo.addRow(obj);
+  		}
+  	
+      }
+
+
 	}
 
   
