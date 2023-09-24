@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,7 +30,6 @@ public class ViewEstoque extends JFrame {
 	Color cor = new Color(162,125,200); 
 	ControllerProduto p= new ControllerProduto();
 
-	JButton pesquisarB= new JButton("PESQUISAR"); 
 	JButton voltarB= new JButton("VOLTAR"); 
 	
 	JTextField nomeProdutoField = new JTextField();
@@ -40,16 +41,16 @@ public class ViewEstoque extends JFrame {
 		JPanel panel = new JPanel();
 		ImageIcon img = new ImageIcon(getClass().getResource("TelaEstoque.PNG"));
 		JLabel labelImg= new JLabel(img);
-		panel.setBounds(115,180,760,390);
+		panel.setBounds(270,230,1000,450);
 		panel.setLayout(null);
 		
 		labelImg.setBounds(-10,-25,1000,650);
 		
-		nomeProdutoField.setBounds(170,140,400,30);
+		nomeProdutoField.setBounds(850,95,300,35);
 		idField.setBounds(750,50,150,30);
 		
 		JScrollPane scTabela= new JScrollPane();
-		scTabela.setBounds(40,20,700,380);
+		scTabela.setBounds(0,0,1000,450);
 		scTabela.setBackground(cor);
 		
 		JTable tabela= new JTable();
@@ -57,22 +58,34 @@ public class ViewEstoque extends JFrame {
 		
 		p.preencheTable(tabela);
 		
-		pesquisarB.setBounds(580,140,160,30);
-        pesquisarB.addActionListener(new ActionListener() {
+		
+		nomeProdutoField.addKeyListener( new KeyListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void keyTyped(KeyEvent e) {
+			
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
 				String desc=nomeProdutoField.getText();
                 p.pesquisarProduto(tabela, desc);
+				
+							
 			}
 		});
 		
-		add(panel);
+       	add(panel);
 		panel.add(scTabela);
-		add(nomeProdutoField);
-		add(pesquisarB);
+	    add(nomeProdutoField);
 		add(labelImg);
-		setSize(1000,650);
+		setSize(1500,750);
 		setVisible(true);
 		setLocationRelativeTo(null);
 
