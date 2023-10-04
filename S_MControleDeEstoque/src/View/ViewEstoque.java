@@ -41,16 +41,16 @@ public class ViewEstoque extends JFrame {
 		JPanel panel = new JPanel();
 		ImageIcon img = new ImageIcon(getClass().getResource("TelaEstoque.PNG"));
 		JLabel labelImg= new JLabel(img);
-		panel.setBounds(270,230,1000,450);
+		panel.setBounds(420,200,810,350);
 		panel.setLayout(null);
 		
-		labelImg.setBounds(-10,-25,1000,650);
+		labelImg.setBounds(-10,50,1000,650);
 		
-		nomeProdutoField.setBounds(850,95,300,35);
+		nomeProdutoField.setBounds(850,55,300,35);
 		idField.setBounds(750,50,150,30);
 		
 		JScrollPane scTabela= new JScrollPane();
-		scTabela.setBounds(0,0,1000,450);
+		scTabela.setBounds(0,0,800,450);
 		scTabela.setBackground(cor);
 		
 		JTable tabela= new JTable();
@@ -97,10 +97,21 @@ public class ViewEstoque extends JFrame {
 			}
 		});
 		
+		voltarB.setBounds(130,600,150,30);
+
+		voltarB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	new ViewMenuAdministrador();
+            	dispose();
+            }
+        });
+		
        	add(panel);
 		panel.add(scTabela);
 	    add(nomeProdutoField);
 		add(labelImg);
+		//add(voltarB);
 		setSize(1500,750);
 		setVisible(true);
 		setLocationRelativeTo(null);

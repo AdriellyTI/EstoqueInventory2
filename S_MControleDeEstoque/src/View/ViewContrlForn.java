@@ -3,8 +3,10 @@ package View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,14 +20,19 @@ public class ViewContrlForn extends JFrame {
 
 	JPanel panel = new JPanel();
 	ControllerFornecedores obj= new ControllerFornecedores();
-	
+	 ImageIcon img = new ImageIcon(getClass().getResource("TelaFornecedores.png"));
+		JLabel label = new JLabel(img);
+		
 	public ViewContrlForn(){
 		
+		label.setBounds(-60,0,1500,750);
+		getContentPane().add(label);
+		
 		JTextField txtNome= new JTextField();
-		txtNome.setBounds(680,100,350,30);
+		txtNome.setBounds(750,90,350,30);
 		
 		JScrollPane scTabela= new JScrollPane();
-		scTabela.setBounds(500,200,800,400);
+		scTabela.setBounds(450,200,800,400);
 		
 		JTable tabela= new JTable();
 		scTabela.setViewportView(tabela);

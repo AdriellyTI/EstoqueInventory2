@@ -50,7 +50,7 @@ public class ViewCtrlFuncionarios extends JFrame{
 		
 		panelFiltrar.setBounds(300,100,400,400);
 		panelFiltrar.setBackground(Color.white);
-		txtPesquisar.setBounds(500,100,400,30);
+		txtPesquisar.setBounds(830,115,350,30);
 		btnFiltrar.setBounds(910,100,50,50);
 		
 //		btnFiltrar.addActionListener(new ActionListener() {
@@ -60,7 +60,10 @@ public class ViewCtrlFuncionarios extends JFrame{
 //            }
 //        });
 		
-		btnVoltarCFun.setBounds(250,500,50,35);
+		btnVoltarCFun.setBounds(130,600,150,35);
+		btnVoltarCFun.setOpaque(false);
+		btnVoltarCFun.setContentAreaFilled(false);
+		btnVoltarCFun.setBorderPainted(false);
 		btnVoltarCFun.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,7 +92,7 @@ public class ViewCtrlFuncionarios extends JFrame{
 			      add(scTabela);        		
 			      add(btnVoltarCFun);
 			      add(txtPesquisar);
-			      add(btnFiltrar);
+			     // add(btnFiltrar);
 			      add(panelFiltrar);
 			      panelFiltrar.setVisible(false);
 			      }

@@ -139,7 +139,7 @@ public class ViewMenuAdministrador extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             	new ViewCompraAdm();
-                dispose();
+                //dispose();
             }
         });
 		//BOTÓES DE VOLTAR EM TODOS OS PAINEIS
