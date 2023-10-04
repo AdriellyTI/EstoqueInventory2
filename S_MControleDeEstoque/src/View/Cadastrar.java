@@ -59,19 +59,7 @@ public class Cadastrar extends JFrame {
 				}
 	        });
 		
-		JButton fornecedor= new JButton("FORNECEDOR");
-		fornecedor.setBounds(570,330,220,40);
-		fornecedor.setBackground(Color.WHITE);
-	    fornecedor.setFont(fonte);
-	    fornecedor.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new ViewFornecedor();
-				
-			}
-        });
+		
 		
 	    JButton funcionario= new JButton("FUNCIONÁRIO");
 		funcionario.setBounds(890,330,220,40);
@@ -92,7 +80,6 @@ public class Cadastrar extends JFrame {
 		
 		panel.setVisible(true);
 		panel.add(administrador);
-		panel.add(fornecedor);
 		panel.add(funcionario);
 		this.setVisible(true);
 		

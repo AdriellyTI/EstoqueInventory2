@@ -64,6 +64,7 @@ public class ProdutoDAO {
 
 			 while(rs.next()) {
 				 ModelProduto p= new ModelProduto();
+				 
 			     p.setId(rs.getInt("id"));
 				 p.setNome(rs.getString("nome"));
 				 p.setPreco(rs.getDouble("preco"));
@@ -73,6 +74,7 @@ public class ProdutoDAO {
 				 
 				 listaAcesso.add(p);
 			 }
+			 
 			 }catch (Exception e) {
 				 JOptionPane.showInternalMessageDialog(null, e);
 				}
@@ -83,6 +85,7 @@ public class ProdutoDAO {
 	 public List<ModelProduto> pesquisarProdutos(String nome){
 		 
 		 List <ModelProduto> listaAcesso = new ArrayList<ModelProduto>();
+		 
 		 String url = "SELECT *FROM produtos WHERE nome LIKE ?";
 		 
 			try {

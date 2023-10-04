@@ -21,7 +21,6 @@ public class ControllerProduto {
 		
 	}
 	
-	
 	public void CadastrarProduto(String nome,double preco,int quantidade,String nomeForn,String descricao ) {
 		
 		ModelProduto produto= new ModelProduto(nome,preco,quantidade,nomeForn,descricao);
@@ -35,24 +34,9 @@ public class ControllerProduto {
 	
 	
 public void preencheTable(JTable tabela) {
-	
-	tabela.setModel(new DefaultTableModel(
-			   new Object[][] {		
-				   
-			   },
-				new String [] {
-						"Id","Nome","Preço","Quantidade","Nome do Fornecedor","Descrição"
-				}
-					
-		  ));
-			tabela.getColumnModel().getColumn(0).setPreferredWidth(76);
-			tabela.getColumnModel().getColumn(1).setPreferredWidth(150);
-			tabela.getColumnModel().getColumn(2).setPreferredWidth(100);
-			tabela.getColumnModel().getColumn(3).setPreferredWidth(199);
-			tabela.getColumnModel().getColumn(4).setPreferredWidth(280);
-			tabela.getColumnModel().getColumn(5).setPreferredWidth(360);
 			
 		List<ModelProduto> lista=  Vproduto.VerProdutos();
+		
 		DefaultTableModel modelo= (DefaultTableModel) tabela.getModel();
 		if (modelo.getRowCount()>0) {
 			modelo.setRowCount(0);

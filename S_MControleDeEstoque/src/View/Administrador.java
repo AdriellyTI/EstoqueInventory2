@@ -65,7 +65,6 @@ public class Administrador extends JFrame{
 
         JTextField telefoneField = new JTextField(20);
         telefoneField.setBounds(400,390,580,30);
-        telefoneField.setText("telefone");
          
         JTextField emailField = new JTextField(20);
         emailField.setBounds(400,470,580,30);

@@ -33,21 +33,7 @@ public class ControllerCadastro {
 			}
 	}
 
-	public void CadastroForn(String nome,String userName,String cnpj, String telefoneComercial,String emailComercial,String telefoneRepresentante,String senha) {
-		
-		CadastroFornecedor fornecedor=new CadastroFornecedor(nome,userName,cnpj,telefoneComercial,emailComercial,telefoneRepresentante,senha);
-        
-        try {
-        Connection conexao =new Conexao().getConnection();
-        CadastroUsuariosDAO forn= new CadastroUsuariosDAO(conexao);
-        
-        forn.insertFornecedor(fornecedor);
-        
-        }catch (SQLException ex) {
-       	 
-        	Logger.getLogger(ControllerCadastro.class.getName()).log(Level.SEVERE,null,ex);
-			}
-	}
+	
 	public void CadastroFunc(String nome,String userName,String dataNasc,String telefone,String email,String senha) {
 		
 		

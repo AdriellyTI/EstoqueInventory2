@@ -12,10 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.ControllerCadastro;
+import Controller.ControllerFornecedores;
 
 
 public class ViewFornecedor extends JFrame {
@@ -25,12 +24,10 @@ public class ViewFornecedor extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	Font fonte= new Font("Georgia",Font.BOLD,25);
-     
-	ControllerCadastro fornecedor;
+
 	 
 	public ViewFornecedor() {
 		 
-		fornecedor= new ControllerCadastro();
 		
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("CADASTRO DO(A) FORNECEDOR(A)");
@@ -49,29 +46,26 @@ public class ViewFornecedor extends JFrame {
 		int y = (screenSize.height - labelHeight) / 2;
 		label.setBounds(x, y, labelWidth, labelHeight);
 
-		panel.add(label);
 
         JTextField nomeField = new JTextField(20);
         nomeField.setBounds(400,175,580,30);
         
-        JTextField usernameField = new JTextField(20);
-        usernameField.setBounds(400,250,580,30);
-        
         JTextField cnpjField= new JTextField(20);
-        cnpjField.setBounds(400,320,580,30);
+        cnpjField.setBounds(400,220,580,30);
 
         JTextField telefoneComercialField = new JTextField(20);
-        telefoneComercialField.setBounds(400,390,580,30);
+        telefoneComercialField.setBounds(400,290,580,30);
 
         JTextField emailComercialField = new JTextField(20);
-        emailComercialField.setBounds(400,460,580,30);
+        emailComercialField.setBounds(400,360,580,30);
 
         JTextField telefoneRepreField= new JTextField(20);
-        telefoneRepreField.setBounds(400,520,580,30);
+        telefoneRepreField.setBounds(400,420,580,30);
         
-        JPasswordField senhaField = new JPasswordField(20);
-        senhaField.setBounds(400,590,580,30);
-
+        JTextField produtoFornF= new JTextField(20);
+        produtoFornF.setBounds(400,490,580,30);
+        
+        
         JButton cadastrarButton = new JButton("SALVAR");
         cadastrarButton.setBackground(Color.BLACK);
         cadastrarButton.setForeground(Color.white);
@@ -80,20 +74,19 @@ public class ViewFornecedor extends JFrame {
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
             	
             	String nome= nomeField.getText();
-            	String userName=usernameField.getText();
             	String cnpj=cnpjField.getText();
             	String telefoneComercial=telefoneComercialField.getText();
             	String emailComercial=emailComercialField.getText();
             	String telefoneRepresentante=telefoneRepreField.getText();
-            	String senha= senhaField.getText();
+            	String produtoForn= produtoFornF.getText();
             	
-            	ControllerCadastro fornecedor= new ControllerCadastro();
+            	ControllerFornecedores fornecedor= new ControllerFornecedores();
             	
-            	fornecedor.CadastroForn(nome, userName, cnpj, telefoneComercial, emailComercial, telefoneRepresentante, senha);
+            	fornecedor.CadastroForn(nome, cnpj, telefoneComercial, emailComercial, telefoneRepresentante,produtoForn);
                 
-             dispose();
             }
         });
 
@@ -105,25 +98,19 @@ public class ViewFornecedor extends JFrame {
         voltarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new ViewMenuAdministrador();
                 dispose();
-               // new Cadastrar();
             }
         });
         
 
 
         panel.add(nomeField);
-        panel.add(usernameField);
- 
         panel.add(cnpjField);
-  
         panel.add(telefoneComercialField);
-    
         panel.add(emailComercialField);
-        
         panel.add(telefoneRepreField);
-       
-        panel.add(senhaField);
+        panel.add(produtoFornF);
         
         panel.add(new JLabel());
         panel.add(voltarButton);

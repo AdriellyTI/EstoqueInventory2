@@ -34,7 +34,6 @@ public class Logo extends JFrame {
 		JLabel label = new JLabel(img);
 		panel.setLayout(null);
 		
-
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int labelWidth = img.getIconWidth();
 		int labelHeight = img.getIconHeight();

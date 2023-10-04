@@ -2,6 +2,7 @@ package Model;
 
 public class CadastroFuncionario {
 
+	private int idFuncionario;
 	private String nome;
 	private String userName;
 	private String dataNasc;
@@ -9,7 +10,10 @@ public class CadastroFuncionario {
 	private String email;
 	private String senha;
 	
-	
+	public CadastroFuncionario() {
+		
+	}
+			
 	
 	public CadastroFuncionario(String nome, String userName, String dataNasc, String telefone, String email,
 			String senha) {
@@ -21,6 +25,17 @@ public class CadastroFuncionario {
 		this.email = email;
 		this.senha = senha;
 	}
+	
+	public int getIdFuncionario() {
+		return idFuncionario;
+	}
+
+
+	public void setIdFuncionario(int idFuncionario) {
+		this.idFuncionario = idFuncionario;
+	}
+
+
 	public String getNome() {
 		return nome;
 	}

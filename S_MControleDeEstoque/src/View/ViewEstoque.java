@@ -58,6 +58,22 @@ public class ViewEstoque extends JFrame {
 		
 		p.preencheTable(tabela);
 		
+		tabela.setModel(new DefaultTableModel(
+				   new Object[][] {		
+					   
+				   },
+					new String [] {
+							"Id","Nome","Preço","Quantidade","Nome do Fornecedor","Descrição"
+					}
+						
+			  ));
+				tabela.getColumnModel().getColumn(0).setPreferredWidth(76);
+				tabela.getColumnModel().getColumn(1).setPreferredWidth(150);
+				tabela.getColumnModel().getColumn(2).setPreferredWidth(100);
+				tabela.getColumnModel().getColumn(3).setPreferredWidth(199);
+				tabela.getColumnModel().getColumn(4).setPreferredWidth(280);
+				tabela.getColumnModel().getColumn(5).setPreferredWidth(360);
+		
 		
 		nomeProdutoField.addKeyListener( new KeyListener() {
 			

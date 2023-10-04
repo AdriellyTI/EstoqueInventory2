@@ -2,16 +2,19 @@ package Model;
 
 public class ModelPagamentos {
 
-
+    private int codigo;
 	private String nomeCliente;
 	private String dataVenda;
 	private int numeroPecas;
 	private double valorTotal;
 	private String formaPagamento;
 
-	
+	public ModelPagamentos() {
+		
+	}
+			
 
-	public ModelPagamentos(String nomeCliente, String dataVenda, int numeroPecas, double valorTotal,
+	public ModelPagamentos(String dataVenda,String nomeCliente, int numeroPecas, double valorTotal,
 			String formaPagamento) {
 		super();
 		this.nomeCliente = nomeCliente;
@@ -19,19 +22,32 @@ public class ModelPagamentos {
 		this.numeroPecas = numeroPecas;
 		this.valorTotal = valorTotal;
 		this.formaPagamento = formaPagamento;
+		
 	}
-	public String getNomeCliente() {
-		return nomeCliente;
+	
+	public int getCodigo() {
+		return codigo;
 	}
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
+
 	public String getDataVenda() {
 		return dataVenda;
 	}
 	public void setDataVenda(String dataVenda) {
 		this.dataVenda = dataVenda;
 	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+	
 	public int getNumeroPecas() {
 		return numeroPecas;
 	}
