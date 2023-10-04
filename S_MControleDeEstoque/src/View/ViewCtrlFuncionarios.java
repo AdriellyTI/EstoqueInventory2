@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +27,9 @@ public class ViewCtrlFuncionarios extends JFrame{
 	JTextField txtPesquisar= new JTextField();
 	JPanel panelFiltrar= new JPanel();
 	
+	ImageIcon img = new ImageIcon(getClass().getResource("FuncionariosAtivos.PNG"));
+	JLabel label = new JLabel(img);
+	
 	
 	public ViewCtrlFuncionarios() {
 		
@@ -33,8 +38,12 @@ public class ViewCtrlFuncionarios extends JFrame{
 		this.setTitle("Controle de Funcionários");
 		getContentPane().setLayout(null);
 		
+		label.setBounds(-60,0,1500,750);
+		getContentPane().add(label);
+		
+		
 		JScrollPane scTabela= new JScrollPane();
-		scTabela.setBounds(500,200,700,400);
+		scTabela.setBounds(550,200,700,400);
 		
 		JTable tabela= new JTable();
 		scTabela.setViewportView(tabela);
@@ -71,7 +80,7 @@ public class ViewCtrlFuncionarios extends JFrame{
 			  ));
 				tabela.getColumnModel().getColumn(0).setPreferredWidth(76);
 				tabela.getColumnModel().getColumn(1).setPreferredWidth(280);
-				tabela.getColumnModel().getColumn(2).setPreferredWidth(76);
+				tabela.getColumnModel().getColumn(2).setPreferredWidth(150);
 				tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
 				tabela.getColumnModel().getColumn(4).setPreferredWidth(200);
 

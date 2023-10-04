@@ -34,7 +34,10 @@ public class ViewMenuAdministrador extends JFrame{
     JPanel painelEsto= new JPanel();
     JButton btncompra = new JButton("ADICIONAR PRODUTO");
     JButton btnVerEsto= new JButton("VISUALIZAR ESTOQUE");
-
+    
+    ImageIcon img = new ImageIcon(getClass().getResource("MenuAdmImagem.PNG"));
+	JLabel label = new JLabel(img);
+	
     
     ViewCtrlFuncionarios obj = new ViewCtrlFuncionarios();
     
@@ -48,9 +51,20 @@ public class ViewMenuAdministrador extends JFrame{
 		this.setTitle("Menu Administrador");
 		getContentPane().setLayout(null);
 		
+		//CONFIGURAÇOES GERAIS
+		getContentPane().add(painelF);
+		getContentPane().add(painelFun);
+		getContentPane().add(painelEsto);
+		
+		label.setBounds(-60,0,1500,750);
+		getContentPane().add(label);
 		
 		JButton btnFuncionarios = new JButton("FUNCIONARIOS");
-		btnFuncionarios.setBounds(509, 120, 200, 33);
+		btnFuncionarios.setOpaque(false);
+		btnFuncionarios.setContentAreaFilled(false);
+		btnFuncionarios.setBorderPainted(false);
+			
+		btnFuncionarios.setBounds(410, 250, 200, 70);
 		getContentPane().add(btnFuncionarios);
 		btnFuncionarios.addActionListener(new ActionListener() {
             @Override
@@ -60,7 +74,11 @@ public class ViewMenuAdministrador extends JFrame{
         });
 		
 		JButton btnFornecimento = new JButton("FORNECIEMENTO");
-		btnFornecimento.setBounds(509, 190, 200, 33);
+		btnFornecimento.setOpaque(false);
+		btnFornecimento.setContentAreaFilled(false);
+		btnFornecimento.setBorderPainted(false);
+		
+		btnFornecimento.setBounds(400, 400, 200, 70);
 		getContentPane().add(btnFornecimento);
 		btnFornecimento.addActionListener(new ActionListener() {
             @Override
@@ -184,17 +202,17 @@ public class ViewMenuAdministrador extends JFrame{
 		painelEsto.add(btnVerEsto);
 		painelEsto.add(btnVoltarEsto);
 
-		//CONFIGURAÇOES GERAIS
-		getContentPane().add(painelF);
-		getContentPane().add(painelFun);
-		getContentPane().add(painelEsto);
 
 		painelF.setVisible(false);
 		painelFun.setVisible(false);
 		painelEsto.setVisible(false);
 
 		JButton btnEstoque = new JButton("ESTOQUE");
-		btnEstoque.setBounds(509, 250, 200, 33);
+		 btnEstoque.setOpaque(false);
+		 btnEstoque.setContentAreaFilled(false);
+		 btnEstoque.setBorderPainted(false);
+		
+		btnEstoque.setBounds(809, 250, 200, 70);
 		getContentPane().add(btnEstoque);
 		btnEstoque.addActionListener(new ActionListener() {
             @Override
@@ -203,7 +221,11 @@ public class ViewMenuAdministrador extends JFrame{
             }
         });
 		JButton btnHisDeV = new JButton("HISTORICO DE VENDAS");
-		btnHisDeV.setBounds(509, 325, 200, 39);
+		btnHisDeV.setOpaque(false);
+		btnHisDeV.setContentAreaFilled(false);
+		btnHisDeV.setBorderPainted(false);
+		
+		btnHisDeV.setBounds(809, 390, 200, 70);
 		getContentPane().add(btnHisDeV);
         btnHisDeV.addActionListener(new ActionListener() {
             @Override
