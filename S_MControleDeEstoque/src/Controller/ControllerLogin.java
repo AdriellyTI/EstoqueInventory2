@@ -12,8 +12,12 @@ import View.ViewMenuFuncionario;
 
 public class ControllerLogin {
 
+	
+	 private int n=0;
 	public void Autenticar(String username,String senha) {
-		
+	
+		if(username.length()!=n || senha.length()!=n) {	
+			
 		try {
 			
 		  VO_USUARIO usuario= new VO_USUARIO(); 
@@ -23,6 +27,7 @@ public class ControllerLogin {
 		  CadastroUsuariosDAO usua= new  CadastroUsuariosDAO();
 		  
 		  ResultSet usuarioDAO=usua.AutentucaçãoUsuarioF(usuario);
+		  
 		  ResultSet usuarioDAOA=usua.AutentucaçãoUsuarioA(usuario);
 		  
 		  if (usuarioDAO.next()) {
@@ -38,7 +43,10 @@ public class ControllerLogin {
 		}catch(SQLException erro){
 			JOptionPane.showMessageDialog(null,"ControllerLogin: "+erro);
 		}
-		
+		}else {
+			JOptionPane.showMessageDialog(null,"Os campos não foram preenchidos");
+
+		}
 	}
 	
 }

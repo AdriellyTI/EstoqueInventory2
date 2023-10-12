@@ -1,15 +1,17 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 
 public class ViewMenuAdministrador extends JFrame{
 
@@ -38,6 +40,7 @@ public class ViewMenuAdministrador extends JFrame{
     ImageIcon img = new ImageIcon(getClass().getResource("MenuAdmImagem.PNG"));
 	JLabel label = new JLabel(img);
 	
+	Color cor= new Color(232, 232, 232);
     
     ViewCtrlFuncionarios obj = new ViewCtrlFuncionarios();
     
@@ -60,11 +63,9 @@ public class ViewMenuAdministrador extends JFrame{
 		getContentPane().add(label);
 		
 		JButton btnFuncionarios = new JButton("FUNCIONARIOS");
-		btnFuncionarios.setOpaque(false);
-		btnFuncionarios.setContentAreaFilled(false);
-		btnFuncionarios.setBorderPainted(false);
-			
-		btnFuncionarios.setBounds(410, 250, 200, 70);
+		btnFuncionarios.setFont(new Font("Arial Black", Font.BOLD, 18));
+		btnFuncionarios.setBackground(Color.WHITE);
+		btnFuncionarios.setBounds(1028, 324, 200, 70);
 		getContentPane().add(btnFuncionarios);
 		btnFuncionarios.addActionListener(new ActionListener() {
             @Override
@@ -72,13 +73,22 @@ public class ViewMenuAdministrador extends JFrame{
                 painelFun.setVisible(true);
             }
         });
+		JButton btnVendas = new JButton("VENDAS");
+		btnVendas.setBackground(Color.WHITE);
+		btnVendas.setFont(new Font("Arial Black", Font.BOLD, 18));
+		btnVendas.setBounds(657, 324, 200, 70);
+		getContentPane().add(btnVendas);
+		btnVendas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JButton btnFornecimento = new JButton("FORNECIEMENTO");
-		btnFornecimento.setOpaque(false);
-		btnFornecimento.setContentAreaFilled(false);
-		btnFornecimento.setBorderPainted(false);
-		
-		btnFornecimento.setBounds(400, 400, 200, 70);
+		btnFornecimento.setBackground(Color.WHITE);
+		btnFornecimento.setFont(new Font("Arial Black", Font.BOLD, 16));
+		btnFornecimento.setBounds(1028, 571, 200, 70);
 		getContentPane().add(btnFornecimento);
 		btnFornecimento.addActionListener(new ActionListener() {
             @Override
@@ -87,6 +97,22 @@ public class ViewMenuAdministrador extends JFrame{
             }
         });
 		
+		 btnFornecimento.addMouseListener(new MouseAdapter () {
+
+		public void mouseExited(MouseEvent arg0) {
+			btnFornecimento.setBackground(Color.WHITE);
+			btnFuncionarios.setBackground(Color.WHITE);
+			btnVendas.setBackground(Color.WHITE);
+			
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+			btnFornecimento.setBackground(cor);
+			btnFuncionarios.setBackground(cor);
+		}
+
+		 });
+	
 		//FUNCIONALIDADES DOS BOTES DE FORNECEDORES
 		btnfornecedores.addActionListener(new ActionListener() {
             @Override
@@ -208,11 +234,11 @@ public class ViewMenuAdministrador extends JFrame{
 		painelEsto.setVisible(false);
 
 		JButton btnEstoque = new JButton("ESTOQUE");
-		 btnEstoque.setOpaque(false);
-		 btnEstoque.setContentAreaFilled(false);
-		 btnEstoque.setBorderPainted(false);
+		btnEstoque.setFont(new Font("Arial Black", Font.BOLD, 18));
+		btnEstoque.setBackground(Color.WHITE);
+		 
 		
-		btnEstoque.setBounds(809, 250, 200, 70);
+		btnEstoque.setBounds(668, 571, 200, 70);
 		getContentPane().add(btnEstoque);
 		btnEstoque.addActionListener(new ActionListener() {
             @Override
@@ -220,21 +246,6 @@ public class ViewMenuAdministrador extends JFrame{
         		painelEsto.setVisible(true);
             }
         });
-		JButton btnHisDeV = new JButton("HISTORICO DE VENDAS");
-		btnHisDeV.setOpaque(false);
-		btnHisDeV.setContentAreaFilled(false);
-		btnHisDeV.setBorderPainted(false);
-		
-		btnHisDeV.setBounds(809, 390, 200, 70);
-		getContentPane().add(btnHisDeV);
-        btnHisDeV.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-        	       new ViewHistVendas();
-        	       dispose();
-            }
-        });
-		
 	}
 
 	public static void main(String[] args) {

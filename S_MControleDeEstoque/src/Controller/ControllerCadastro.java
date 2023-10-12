@@ -50,4 +50,7 @@ public class ControllerCadastro {
 	}
 
 
+	public void mostrarDados(String nome, String userName,String dataNasc,String telefone,String email) {
+		
+	}
 }

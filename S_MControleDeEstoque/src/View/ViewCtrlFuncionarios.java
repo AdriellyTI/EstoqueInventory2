@@ -96,9 +96,5 @@ public class ViewCtrlFuncionarios extends JFrame{
 			      add(panelFiltrar);
 			      panelFiltrar.setVisible(false);
 			      }
-	
-	public static void main(String[]args) {
-		new ViewCtrlFuncionarios();
-	}
 
 }

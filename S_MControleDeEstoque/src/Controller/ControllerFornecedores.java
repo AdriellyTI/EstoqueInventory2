@@ -60,6 +60,7 @@ Connection con;
    			obj[5]=p.getTelefoneRepresentante();
    			obj[6]=p.getProdutoForn();
    			
+   			
    			modelo.addRow(obj);
    		}
    	

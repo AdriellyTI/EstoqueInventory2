@@ -82,7 +82,10 @@ public void preencheTable(JTable tabela) {
   	
       }
 
-
+      
+      public void MostrarDadosProdutos()  {
+    	  
+      }
 	}
 
   

@@ -27,26 +27,22 @@ public class Logo extends JFrame {
 	public Logo() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+       this.setSize(1600,900);
+       
 		JPanel panel = new JPanel();
 	    ImageIcon img = new ImageIcon(getClass().getResource("ImagemLogo.png"));
 		JLabel label = new JLabel(img);
 		panel.setLayout(null);
+		setUndecorated (true);
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int labelWidth = img.getIconWidth();
-		int labelHeight = img.getIconHeight();
-		int x = (screenSize.width - labelWidth) / 2;
-		int y = (screenSize.height - labelHeight) / 2;
-		label.setBounds(x, y, labelWidth, labelHeight);
-
-		panel.add(label);
+        label.setBounds(-120,-130,1600,900);
+		
+        panel.add(label);
 		
 		JButton cadastrarButton= new JButton("CADASTRAR");
 	    cadastrarButton.setBackground(Color.white);
 	    cadastrarButton.setFont(fonte);
-	    cadastrarButton.setBounds(600,630,170,35);
+	    cadastrarButton.setBounds(824,628,170,35);
         cadastrarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -60,7 +56,7 @@ public class Logo extends JFrame {
 		JButton entrarButton = new JButton("ENTRAR");
 		entrarButton.setBackground(Color.white);	
 		entrarButton.setFont(fonte);
-		entrarButton.setBounds(600,560,170,35);
+		entrarButton.setBounds(824,562,170,35);
 		entrarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -69,11 +65,19 @@ public class Logo extends JFrame {
 		         dispose();
 			}
 		});
-		
+		JButton btnSair= new JButton();
+		btnSair.setBounds(1000,0,50,20);
+		btnSair.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		         dispose();
+			}
+		});
 		
 		panel.add(cadastrarButton);
 		panel.add(entrarButton);
-		add(panel);
+		getContentPane().add(panel);
+		panel.add(btnSair);
 		setVisible(true);
 	}
 		

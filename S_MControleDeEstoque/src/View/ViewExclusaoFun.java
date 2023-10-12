@@ -32,7 +32,7 @@ public class ViewExclusaoFun extends JFrame{
 	 
         public ViewExclusaoFun() {
         	
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		this.setSize(1200,700);		
 		this.setVisible(true);

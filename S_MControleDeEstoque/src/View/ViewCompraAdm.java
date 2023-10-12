@@ -1,6 +1,11 @@
 package View;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -9,39 +14,87 @@ public class ViewCompraAdm extends JFrame {
 
     JTextField txtData=new JTextField();
     JTextField txtQuant= new JTextField();
+    JTextField txtId =new JTextField();	
     
     JTextField txtNome =new JTextField();
-    JTextField txtId =new JTextField();	
-    JTextField txtDescriçao =new JTextField();	
+    JTextField txtPreco =new JTextField();	
 
+    Font fonte = new Font("Arial",Font.LAYOUT_NO_LIMIT_CONTEXT,20);
+    JButton btnVoltar = new JButton();
     
     ImageIcon img = new ImageIcon(getClass().getResource("produtoImg.PNG"));
   	JLabel label = new JLabel(img);
+  	private JTextField txtNomeFornecedor;
+  	private JTextField txtDescricao;
+  	private final JTextField txtQuantEsto = new JTextField();
   	 
 	public ViewCompraAdm() {
-		
-		this.setSize(1200,700);		
+		this.setSize(1500,750);		
 		this.setVisible(true);
 		this.setTitle("Fornecimeto");
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 		
-		label.setBounds(100,70,150,150);
+		label.setBounds(-50,-27,1477,820);
 		
-		txtData.setBounds(300,50,150,30);
-		txtNome.setBounds(300,100,300,30);
-		txtId.setBounds(300,150,150,30);
-		txtQuant.setBounds(300,200,150,30);
+		btnVoltar.setBounds(53, 11, 62, 55);
+	    btnVoltar.setOpaque(false);
+  		btnVoltar.setContentAreaFilled(false);
+	    btnVoltar.setBorderPainted(false);
+
+		txtData.setBounds(515,194,189,30);
+		txtData.setFont(fonte);
 		
-		add(label);
-		add(txtData);
-		add(txtNome);
-		add(txtId);
-		add(txtQuant);
+		txtQuantEsto.setBounds(899, 494, 200, 30);
+		txtQuantEsto.setColumns(10);
+		txtQuantEsto.setFont(fonte);
+		
+
+		txtNome.setBounds(546,431,300,30);
+		txtNome.setFont(fonte);
+
+		txtId.setBounds(515,330,189,35);
+		txtId.setFont(fonte);
+		
+		txtQuant.setBounds(517,264,189,35);
+		txtQuant.setFont(fonte);
+		
+		txtPreco.setBounds(899,431,146,30);
+		txtPreco.setFont(fonte);
+		
+		txtNomeFornecedor = new JTextField();
+		txtNomeFornecedor.setBounds(546, 494, 300, 30);
+		txtNomeFornecedor.setColumns(10);
+		txtNomeFornecedor.setFont(fonte);
+
+		txtDescricao = new JTextField();
+		txtDescricao.setBounds(546, 563, 300, 74);
+		txtDescricao.setColumns(10);
+		txtDescricao.setFont(fonte);
+		
+
+		btnVoltar.addActionListener((new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ViewMenuAdministrador();
+				dispose();
+			}
+        }));
+		
+		getContentPane().add(label);
+		getContentPane().add(txtData);
+		getContentPane().add(txtNome);
+		getContentPane().add(txtId);
+		getContentPane().add(txtQuant);
+		getContentPane().add(txtPreco);
+		getContentPane().add(txtNomeFornecedor);
+		getContentPane().add(txtDescricao);
+		getContentPane().add(txtQuantEsto);
+		getContentPane().add(btnVoltar);
+
+		
 	}
 	public static void main (String[] args) {
 		new ViewCompraAdm();
 	}
-	
-	
 }

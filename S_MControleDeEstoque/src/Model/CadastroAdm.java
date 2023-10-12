@@ -22,6 +22,9 @@ public class CadastroAdm {
 		this.email = email;
 		this.senha = senha;
 	}
+	public CadastroAdm() {
+		
+	}
 	public String getNome() {
 		return nome;
 	}

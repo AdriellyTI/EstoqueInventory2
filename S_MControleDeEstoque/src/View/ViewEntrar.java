@@ -1,9 +1,7 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.ControllerLogin;
@@ -25,40 +24,40 @@ public class ViewEntrar extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	Font fonte= new Font("Georgia",Font.BOLD,30);
-    Color cor = new Color(162,125,200); 
+    Color cor = new Color(22,114,186);
+   
     
+	JTextField nomeField = new JTextField(20);
+	JPasswordField senhaField = new JPasswordField(20);
+	JButton login = new JButton("LOGIN");
+	JButton voltar = new JButton("VOLTAR");
+	
+//	Font fonte2= new Font("Georgia",Font.LAYOUT_LEFT_TO_RIGHT,20);
+    Font fonte2 = new Font("Arial",Font.LAYOUT_NO_LIMIT_CONTEXT,20);
+
+	
     public ViewEntrar(){
     	
-    	
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		JTextField nomeField = new JTextField(20);
-		JTextField senhaField = new JTextField(20);
-		JButton login = new JButton("LOGIN");
-		JButton voltar = new JButton("VOLTAR");
-		
-		
-		JPanel panel = new JPanel();
-		ImageIcon img = new ImageIcon(getClass().getResource("TelaEntrar.PNG"));
-		JLabel labelImg= new JLabel(img);
-		panel.setLayout(null);
-		
-		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int labelImgWidth = img.getIconWidth();
-		int labelImgHeight = img.getIconHeight();
-		int x = (screenSize.width - labelImgWidth) / 2;
-		int y = (screenSize.height - labelImgHeight) / 2;
-		labelImg.setBounds(x, y, labelImgWidth, labelImgHeight);
-		
-		nomeField.setBounds(520,320,400,35);
-	    nomeField.setBackground(Color.white);
-
-	    senhaField.setBounds(520, 420, 400, 35);
-	    senhaField.setBackground(Color.white);
-	    
-	    panel.add(labelImg);
+    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1600,900);
+        
+ 		JPanel panel = new JPanel();
+ 	    ImageIcon img = new ImageIcon(getClass().getResource("TelaEntrar.PNG"));
+ 		JLabel label = new JLabel(img);
+ 		panel.setLayout(null);
+ 		
+         label.setBounds(-120,-70,1600,900);
+         panel.add(label);		
+         
+         nomeField.setBounds(515,350,400,35);
+	     nomeField.setBackground(cor);
+	     nomeField.setBorder(null);
+	     nomeField.setForeground(Color.WHITE);
+	     nomeField.setFont(fonte2);
+	      
+	    senhaField.setBounds(515, 450, 350, 30);
+	    senhaField.setBackground(cor);
+	    senhaField.setBorder(null);
 	    
 		login.setBounds(580,615,200,45);
 		login.setBackground(Color.white);
@@ -91,13 +90,19 @@ public class ViewEntrar extends JFrame {
 			
 		});
 		
-		panel.setVisible(true);
-		this.setVisible(true);
-		add(panel);
+		
+		
+		
 		panel.add(nomeField);
 		panel.add(senhaField);
 		panel.add(login);
 		panel.add(voltar);
+		
+		add(panel);
+		this.setVisible(true);
+//		this.setLayout(null);
+//		setLocationRelativeTo(null);
+
 	}
 
 
