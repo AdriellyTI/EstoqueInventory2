@@ -1,0 +1,94 @@
+CREATE DATABASE EsttoqueMM;
+
+USE EsttoqueMM;
+
+
+DROP TABLE IF EXISTS Administrador;
+DROP TABLE IF EXISTS Funcionario;
+DROP TABLE IF EXISTS Fornecedoor;
+DROP TABLE IF EXISTS Produto;
+DROP TABLE IF EXISTS Recibo;
+
+CREATE TABLE Administrador (
+    idAdm INT NOT NULL AUTO_INCREMENT,
+    nomeCompleto VARCHAR(200) NOT NULL,
+    userName VARCHAR(100) UNIQUE NOT NULL,
+    dataNasc DATE NOT NULL,
+    tele VARCHAR(12) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(50) NOT NULL,
+	foto longblob ,
+    PRIMARY KEY (idAdm)
+);
+
+CREATE TABLE Funcionario (
+    idFuncionario INT NOT NULL AUTO_INCREMENT,
+    nomeCompleto VARCHAR(200) NOT NULL,
+    userName VARCHAR(100) UNIQUE NOT NULL,
+    dataNasc DATE NOT NULL,
+    tele VARCHAR(12) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(8) NOT NULL,
+    PRIMARY KEY (idFuncionario)
+);
+
+CREATE TABLE Fornecedoor(
+    idFornecedor INT NOT NULL AUTO_INCREMENT,
+    nomeEmpresa VARCHAR(200) NOT NULL,
+    cnpj VARCHAR(15) NOT NULL,
+    teleComercial VARCHAR(12) NOT NULL,
+    emailComercial VARCHAR(30) NOT NULL,
+    teleRepre VARCHAR(12) NOT NULL,
+    produtoForn VARCHAR(200) NOT NULL,
+    PRIMARY KEY (idFornecedor)
+);
+
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade INT NOT NULL,
+    nome_fornecedor VARCHAR(255),
+    descricao TEXT
+);
+CREATE TABLE Recibo (
+    codigoVenda INT PRIMARY KEY AUTO_INCREMENT,
+    data DATE NOT NULL,
+     nomeCliente VARCHAR(100) NOT NULL,
+    numeroDePecas INT NOT NULL,
+    valorTotal DECIMAL(10, 2),
+    formaPagamento VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Fornecimento(
+
+codigo INT AUTO_INCREMENT PRIMARY KEY,
+data DATE NOT NULL,
+quantidade INT NOT NULL,
+nome_prduto VARCHAR (90) NOT NULL,
+id_produto  INT NOT NULL,
+nome_fornecedor VARCHAR(90) NOT NULL
+
+);
+INSERT INTO produtos (nome, preco, quantidade, nome_fornecedor, descricao)
+VALUES ('Calça Jeans', 49.99, 30, 'Fornecedor B', 'Calça jeans azul de tamanho 32.');
+
+INSERT INTO produtos (nome, preco, quantidade, nome_fornecedor, descricao)
+VALUES 
+('Camisa Polo', 39.99, 100, 'Fornecedor A', 'Camisa polo de algodão em várias cores.'),
+('Calça Jeans', 59.99, 80, 'Fornecedor B', 'Calça jeans de corte reto, disponível em todos os tamanhos.'),
+('Vestido Floral', 49.99, 50, 'Fornecedor C', 'Vestido floral elegante para ocasiões especiais.'),
+('Tênis Esportivo', 29.99, 120, 'Fornecedor D', 'Tênis esportivo leve e confortável para atividades físicas.'),
+('Blusa de Inverno', 79.99, 60, 'Fornecedor E', 'Blusa de inverno quente e macia, disponível em vários tamanhos.');
+-- Agora você pode executar comandos SELECT após a criação das tabelas
+SELECT * FROM produtos;
+SELECT * FROM Funcionario;
+SELECT * FROM Fornecedoor;
+SELECT * FROM Administrador;
+SELECT * FROM Recibo;
+SELECT * FROM Fornecimento;
+
+DROP DATABASE EsttoqueMM;
+DROP TABLE Administrador;
+
+describe Administrador;
