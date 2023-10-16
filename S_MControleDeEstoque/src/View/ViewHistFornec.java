@@ -67,9 +67,9 @@ public class ViewHistFornec extends JFrame{
 				 getContentPane().add(btnVoltar);
                  add(txtPesquisa);
 	}
-         public static void main(String[] args) {
-        	 
-        	 new ViewHistFornec();
-         }
-	
+//         public static void main(String[] args) {
+//        	 
+//        	 new ViewHistFornec();
+//         }
+//	
 }

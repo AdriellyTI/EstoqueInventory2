@@ -92,8 +92,8 @@ public class ViewMenuFuncionario extends JFrame {
 		add(panel);
 	}
 	
-	public static void main(String [] args) {
-		new ViewMenuFuncionario();
-	}
+//	public static void main(String [] args) {
+//		new ViewMenuFuncionario();
+//	}
 
 }

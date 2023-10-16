@@ -26,14 +26,14 @@ public class Logo extends JFrame {
 
 	public Logo() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        this.setSize(1600,900);
        
 		JPanel panel = new JPanel();
 	    ImageIcon img = new ImageIcon(getClass().getResource("ImagemLogo.png"));
 		JLabel label = new JLabel(img);
 		panel.setLayout(null);
-		setUndecorated (true);
+	//	setUndecorated (true);
 		
         label.setBounds(-120,-130,1600,900);
 		
@@ -47,9 +47,7 @@ public class Logo extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
 				new Cadastrar();
-
 			}
         });
 	    
@@ -74,10 +72,10 @@ public class Logo extends JFrame {
 			}
 		});
 		
-		panel.add(cadastrarButton);
+		panel.add(cadastrarButton); 
 		panel.add(entrarButton);
 		getContentPane().add(panel);
-		panel.add(btnSair);
+		//panel.add(btnSair);
 		setVisible(true);
 	}
 		

@@ -12,7 +12,6 @@ public class Conexao {
 	public static Connection conn;
 			
 	public  Connection getConnection() {
-			
 		
 		try {
 		    Class.forName("com.mysql.cj.jdbc.Driver");

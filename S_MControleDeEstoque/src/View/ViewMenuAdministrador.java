@@ -47,7 +47,6 @@ public class ViewMenuAdministrador extends JFrame{
 	public ViewMenuAdministrador(){
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
        
 		this.setSize(1500,750);		
 		this.setVisible(true);
@@ -142,8 +141,8 @@ public class ViewMenuAdministrador extends JFrame{
 		btnFunAtivo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	dispose();
             	new ViewCtrlFuncionarios();
-                dispose();
             }
         });
 		btnExcluirFun.addActionListener(new ActionListener() {
@@ -228,7 +227,6 @@ public class ViewMenuAdministrador extends JFrame{
 		painelEsto.add(btnVerEsto);
 		painelEsto.add(btnVoltarEsto);
 
-
 		painelF.setVisible(false);
 		painelFun.setVisible(false);
 		painelEsto.setVisible(false);
@@ -246,10 +244,5 @@ public class ViewMenuAdministrador extends JFrame{
         		painelEsto.setVisible(true);
             }
         });
-	}
-
-	public static void main(String[] args) {
-		
-		new ViewMenuAdministrador();
 	}
 }

@@ -1,9 +1,16 @@
 package Controller;
 
+import java.awt.Image;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 import Model.CadastroAdm;
 import Model.CadastroFornecedor;
@@ -17,20 +24,16 @@ import View.ViewFornecedor;
 public class ControllerCadastro {
 
 	
-	public void CadastrarUsuarioAdm(String nome,String userName,String dataNasc,String telefone,String email,String senha ) {
+	
+	public void CadastrarUsuarioAdm(String nome,String userName,String dataNasc,String telefone,String email,String senha ) throws SQLException {
 		
 
           CadastroAdm administrador= new CadastroAdm(nome,userName,dataNasc,telefone,email,senha);
           
-          try {
           Connection conexao =new Conexao().getConnection();
           CadastroUsuariosDAO admDao= new CadastroUsuariosDAO(conexao);
           
-          admDao.insertAdm(administrador);
-          
-          }catch (SQLException ex) {
-          	Logger.getLogger(ControllerCadastro.class.getName()).log(Level.SEVERE,null,ex);
-			}
+          admDao.insertAdm( administrador, null, 0);
 	}
 
 	
@@ -53,4 +56,6 @@ public class ControllerCadastro {
 	public void mostrarDados(String nome, String userName,String dataNasc,String telefone,String email) {
 		
 	}
+	
+	
 }

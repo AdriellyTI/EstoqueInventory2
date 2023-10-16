@@ -22,6 +22,7 @@ public class ViewCadastroProduto extends JFrame {
 	JTextField quantField = new JTextField();
 	JTextField nomeFornField= new JTextField();
 	JTextField descricaoField = new JTextField();
+	
 	ControllerProduto product= new ControllerProduto();
 	
 
@@ -55,9 +56,6 @@ public class ViewCadastroProduto extends JFrame {
                String descricao= descricaoField.getText();
          
                product.CadastrarProduto(nome, preco, quantidade, nomeForn, descricao);
-               
-               
-               
 			}
 		});
 		
@@ -95,7 +93,7 @@ public class ViewCadastroProduto extends JFrame {
 		 InitComponents();
 	}
 	
-	public static void  main(String[]args) {
-		new ViewCadastroProduto();
-	}
+//	public static void  main(String[]args) {
+//		new ViewCadastroProduto();
+//	}
 }

@@ -1,16 +1,18 @@
 package Model;
 
+import java.awt.Image;
+import java.io.FileInputStream;
 
 public class CadastroAdm {
-
+	
+	private FileInputStream fis;
+	private int tamanho;
 	private String nome;
 	private String userName;
 	private String dataNasc;
 	private String telefone;
 	private String email;
 	private String senha;
-	
-	
 
 
 	public CadastroAdm(String nome, String userName, String dataNasc, String telefone, String email, String senha) {
@@ -22,6 +24,36 @@ public class CadastroAdm {
 		this.email = email;
 		this.senha = senha;
 	}
+
+	
+	
+
+	public CadastroAdm(FileInputStream fis, int tamanho) {
+		super();
+		this.fis = fis;
+		this.tamanho = tamanho;
+	}
+
+
+
+
+	public FileInputStream getFis() {
+		return fis;
+	}
+	public void setFis(FileInputStream fis) {
+		this.fis = fis;
+	}
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+
+
+
 	public CadastroAdm() {
 		
 	}

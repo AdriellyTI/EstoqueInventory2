@@ -128,7 +128,7 @@ public class Funcionario extends JFrame {
         // Método para limpar os campos após o cadastro
         // Pode ser implementado aqui
     }
-    public static void main(String [] args) {
-    	new Funcionario();
-   	}
+//    public static void main(String [] args) {
+//    	new Funcionario();
+//   	}
 }

@@ -20,6 +20,10 @@ public class ViewCtrlFuncionarios extends JFrame{
 
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton btnVoltarCFun = new JButton("V");
 	JButton btnFiltrar= new JButton();
 	

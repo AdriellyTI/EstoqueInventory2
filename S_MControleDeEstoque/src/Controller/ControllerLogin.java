@@ -7,20 +7,22 @@ import javax.swing.JOptionPane;
 
 import Model.VO_USUARIO;
 import ModelDAO.CadastroUsuariosDAO;
+import View.ViewCtrlFuncionarios;
 import View.ViewMenuAdministrador;
 import View.ViewMenuFuncionario;
 
 public class ControllerLogin {
 
-	
-	 private int n=0;
+	private int n=0;
+	ViewCtrlFuncionarios obj2= new ViewCtrlFuncionarios();
 	public void Autenticar(String username,String senha) {
 	
-		if(username.length()!=n || senha.length()!=n) {	
+		if(username.length()!=n || senha.length()!=n) {
 			
 		try {
 			
 		  VO_USUARIO usuario= new VO_USUARIO(); 
+		  
      	  usuario.setUsername(username);
 		  usuario.setSenha(senha); 
 		
@@ -34,19 +36,18 @@ public class ControllerLogin {
 			  new ViewMenuFuncionario();
 			   
 		} else  if (usuarioDAOA.next()) {
-					  
-			  new ViewMenuAdministrador();
+			
+			obj2.dispose();
+			new ViewMenuAdministrador();
 		  }else {
-              JOptionPane.showMessageDialog(null, "Administrador");
-
+              JOptionPane.showMessageDialog(null, "Usuário não identificado");
 		  }
 		}catch(SQLException erro){
 			JOptionPane.showMessageDialog(null,"ControllerLogin: "+erro);
 		}
+		
 		}else {
 			JOptionPane.showMessageDialog(null,"Os campos não foram preenchidos");
-
 		}
 	}
-	
 }

@@ -19,15 +19,29 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.Position;
+import javax.swing.text.Segment;
 
 import Controller.ControllerProduto;
 import Model.ModelProduto;
 import ModelDAO.ProdutoDAO;
 
-public class ViewEstoque extends JFrame {
+public class ViewEstoque extends JFrame  {
 
-	Color cor = new Color(162,125,200); 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Color cor = new Color(162,125,200);
+	
 	ControllerProduto p= new ControllerProduto();
 
 	JButton voltarB= new JButton("VOLTAR"); 
@@ -56,7 +70,6 @@ public class ViewEstoque extends JFrame {
 		JTable tabela= new JTable();
 		scTabela.setViewportView(tabela);
 		
-		p.preencheTable(tabela);
 		
 		tabela.setModel(new DefaultTableModel(
 				   new Object[][] {		
@@ -74,6 +87,7 @@ public class ViewEstoque extends JFrame {
 				tabela.getColumnModel().getColumn(4).setPreferredWidth(280);
 				tabela.getColumnModel().getColumn(5).setPreferredWidth(360);
 		
+				p.preencheTable(tabela);
 		
 		nomeProdutoField.addKeyListener( new KeyListener() {
 			
@@ -92,7 +106,6 @@ public class ViewEstoque extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				String desc=nomeProdutoField.getText();
                 p.pesquisarProduto(tabela, desc);
-				
 							
 			}
 		});
@@ -117,10 +130,4 @@ public class ViewEstoque extends JFrame {
 		setLocationRelativeTo(null);
 
 	}
-
-
-	public static void main (String [] args) {
-		new ViewEstoque();
-	}
-
 }

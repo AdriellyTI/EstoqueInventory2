@@ -71,7 +71,6 @@ public class ViewEntrar extends JFrame {
 			    
 			    ControllerLogin entrar= new ControllerLogin();
 			    entrar.Autenticar(username, senha);
-			    
 			    dispose();
 			}
 		});

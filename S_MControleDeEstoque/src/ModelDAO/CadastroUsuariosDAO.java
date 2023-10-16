@@ -1,21 +1,29 @@
 package ModelDAO;
 
+import java.awt.Image;
+import java.io.FileInputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 //import java.sql.SQLException;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import Model.CadastroAdm;
 import Model.CadastroFornecedor;
 import Model.CadastroFuncionario;
-import Model.ModelPagamentos;
 import Model.VO_USUARIO;
 
 public class CadastroUsuariosDAO {
@@ -23,7 +31,8 @@ public class CadastroUsuariosDAO {
 	 Connection connection;
 	 PreparedStatement statement;
 	 ResultSet rs;
-	
+//	 private FileInputStream fis;
+//	 private int tamanho;
 	public CadastroUsuariosDAO(Connection connection) {
 		this.connection = connection;
 	}
@@ -37,24 +46,44 @@ public class CadastroUsuariosDAO {
 			String url="INSERT INTO Funcionario(nomeCompleto,userName,dataNasc,tele,email,senha) VALUES('"+usuarioFunc.getNome()+"','"+usuarioFunc.getUserName()+"','"+usuarioFunc.getDataNasc()+"','"+usuarioFunc.getTelefone()+"','"+usuarioFunc.getEmail()+"','"+usuarioFunc.getSenha() +"')";
 			
 			 statement = connection.prepareStatement(url);
-			statement.execute();
+			 statement.execute();
 			
 			connection.close();
 	 }
-	 
-	 public void insertAdm(CadastroAdm usuarioAdm) throws SQLException {
-		 
-		 
-		 String url="INSERT INTO Administrador(nomeCompleto,userName,dataNasc,tele,email,senha) VALUES('"+usuarioAdm.getNome()+"','"+usuarioAdm.getUserName()+"','"+usuarioAdm.getDataNasc()+"','"+usuarioAdm.getTelefone()+"','"+usuarioAdm.getEmail()+"','"+usuarioAdm.getSenha() +"')";
-		 
-		 PreparedStatement statement = connection.prepareStatement(url);
-		 
-		 statement.execute();
-		 connection.close();
-		 
-	 }
-	 
- public void insertFornecedor(CadastroFornecedor usuarioAdm) throws SQLException {
+	
+	 public void insertAdm(CadastroAdm usuarioAdm,FileInputStream fis,int tamanho) {
+		    String sql = "INSERT INTO Administrador(nomeCompleto, userName, dataNasc, tele, email, senha, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		    
+		    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+		    	
+		        statement.setString(1, usuarioAdm.getNome());
+		        statement.setString(2, usuarioAdm.getUserName());
+		        
+		        // Convertendo a String de data para java.sql.Date
+		        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		        Date dataNasc = new Date(sdf.parse(usuarioAdm.getDataNasc()).getTime());
+		        statement.setDate(3, dataNasc);
+		        
+		        statement.setString(4, usuarioAdm.getTelefone());
+		        statement.setString(5, usuarioAdm.getEmail());
+		        statement.setString(6, usuarioAdm.getSenha());
+		       statement.setBinaryStream(7,usuarioAdm.getFis() , usuarioAdm.getTamanho());
+		     
+
+		        int confirma = statement.executeUpdate();
+
+		        if (confirma == 1) {
+		            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário");
+		        }
+		    } catch (SQLException | ParseException e) {
+		        e.printStackTrace();
+		        JOptionPane.showMessageDialog(null, "Erro ao cadastrar o usuário: " + e.getMessage());
+		    }
+		}
+
+public void insertFornecedor(CadastroFornecedor usuarioAdm) throws SQLException {
 		 
 	 String url="INSERT INTO Fornecedoor(nomeEmpresa,cnpj,teleComercial,emailComercial,teleRepre,produtoForn) VALUES('"+usuarioAdm.getNome()+"','"+usuarioAdm.getCnpj()+"','"+usuarioAdm.getTelefoneComercial()+"','"+usuarioAdm.getEmailComercial()+"','"+usuarioAdm.getTelefoneRepresentante()+"','"+usuarioAdm.getProdutoForn()+"')";
 		 
@@ -83,22 +112,19 @@ public class CadastroUsuariosDAO {
 			 
 		 }catch (SQLException erro) {
 			 JOptionPane.showMessageDialog(null,"CadastroUsuariosDAO: "+erro);
-			// TODO: handle exception
 		}
 		return null;
 	 }
 	 
-	 public  ResultSet AutentucaçãoUsuarioA(VO_USUARIO usuario) {
+	 public  ResultSet AutentucaçãoUsuarioA(VO_USUARIO usuario2) {
 		 connection= new Conexao().getConnection();
-		 
-		 try {
-			 
+		 try { 
 			 String sql="SELECT * FROM Administrador WHERE userName=? and senha=? ";
 			 
 			 PreparedStatement pstm= connection.prepareStatement(sql);
 			 
-			 pstm.setString(1, usuario.getUsername());
-			 pstm.setString(2, usuario.getSenha());
+			 pstm.setString(1, usuario2.getUsername());
+			 pstm.setString(2, usuario2.getSenha());
 
 			 ResultSet rs= pstm.executeQuery();
 			 
@@ -106,7 +132,6 @@ public class CadastroUsuariosDAO {
 			 
 		 }catch (SQLException erro) {
 			 JOptionPane.showMessageDialog(null,"CadastroUsuariosDAO: "+erro);
-			// TODO: handle exception
 		}
 		return null;
 	 }
@@ -144,8 +169,6 @@ public List<CadastroFuncionario> VerFuncionariosAtivos(){
 			 return listaAcesso;
 
 	 }
-	
-
 	
 }
 //    
