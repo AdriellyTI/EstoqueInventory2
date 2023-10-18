@@ -6,27 +6,25 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Model.ModelFornecimento;
 import Model.ModelProduto;
 import ModelDAO.Conexao;
 import ModelDAO.ProdutoDAO;
+import View.ViewCompraAdm;
 
 
 public class ControllerProduto {
 	
 	Connection con;
 	
-	ProdutoDAO Vproduto= new ProdutoDAO();
-	
-	public ControllerProduto() {
+	ProdutoDAO Vproduto= new ProdutoDAO(null);
+	 ModelProduto produto= new ModelProduto();
 		
-	}
-	
 	public void CadastrarProduto(String nome,double preco,int quantidade,String nomeForn,String descricao ) {
 		
-		ModelProduto produto= new ModelProduto(nome,preco,quantidade,nomeForn,descricao);
-		
-		 Connection conexao =new Conexao().getConnection();
+		 ModelProduto produto= new ModelProduto(nome,preco,quantidade,nomeForn,descricao);
 		 
+		 Connection conexao =new Conexao().getConnection();
 		 ProdutoDAO pdt= new ProdutoDAO(conexao);
 		 
 		 pdt.insertProduto(produto);
@@ -34,7 +32,8 @@ public class ControllerProduto {
 	
 	
 public void preencheTable(JTable tabela) {
-			
+
+	
 		List<ModelProduto> lista=  Vproduto.VerProdutos();
 		
 		DefaultTableModel modelo= (DefaultTableModel) tabela.getModel();
@@ -50,22 +49,20 @@ public void preencheTable(JTable tabela) {
 			obj[2]=p.getPreco();
 			obj[3]=p.getQuantidade();
 			obj[4]=p.getNomeForn();
-			obj[5]=p.getDescrição();
+			obj[5]=p.getDescricao();
 			
 			modelo.addRow(obj);
 		}
-	
-		}
-  
+}
       public void pesquisarProduto(JTable tabela,String desc) {
     	  
-    	  List<ModelProduto> lista=  Vproduto.VerProdutos();
+    	  
   		   DefaultTableModel modelo= (DefaultTableModel) tabela.getModel();
   		if (modelo.getRowCount()>0) {
   			modelo.setRowCount(0);
-  		}
+  	
 
-  		ProdutoDAO pr= new ProdutoDAO();
+  		ProdutoDAO pr= new ProdutoDAO(con);
   		
   		for(ModelProduto p: pr.pesquisarProdutos(desc)) {
   			
@@ -75,18 +72,34 @@ public void preencheTable(JTable tabela) {
   			obj[2]=p.getPreco();
   			obj[3]=p.getQuantidade();
   			obj[4]=p.getNomeForn();
-  			obj[5]=p.getDescrição();
+  			obj[5]=p.getDescricao();
   			
   			modelo.addRow(obj);
   		}
-  	
+  		}
       }
 
-      
-      public void MostrarDadosProdutos()  {
-    	  
-      }
+	
+      public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao)  {
+    	 
+    	   Vproduto.BuscarProduto(txtId,txtNome);
+    	  //txtNome.setText(produto.getNome());
+     	 // txtPreco=Integer.parseInt(produto.getPreco());
+    	  txtNomeFornecedor.setText(produto.getNomeForn());
+    	  txtDescricao.setText(produto.getDescricao());      }
+//      public void reporProduto(String dataFornec,int quantidade,String idProduto) {
+//    	  
+//    	  ModelFornecimento frn= new ModelFornecimento(dataFornec,quantidade,idProduto);
+//    	  
+// 		 Connection conexao =new Conexao().getConnection();
+// 		 ProdutoDAO pdt= new ProdutoDAO(conexao);
+// 		 
+// 		// pdt.insertfornecimento(frn);
+//    	  
+//      }
 	}
+	
 
-  
+
+
 	
