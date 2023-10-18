@@ -1,8 +1,6 @@
-CREATE DATABASE EsttoqueMM;
+CREATE DATABASE  EsttoqueMM;
 
 USE EsttoqueMM;
-
-
 DROP TABLE IF EXISTS Administrador;
 DROP TABLE IF EXISTS Funcionario;
 DROP TABLE IF EXISTS Fornecedoor;
