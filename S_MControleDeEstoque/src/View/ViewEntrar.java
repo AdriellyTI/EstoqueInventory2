@@ -42,14 +42,13 @@ public class ViewEntrar extends JFrame {
         this.setSize(1600,900);
         
  		JPanel panel = new JPanel();
- 	    ImageIcon img = new ImageIcon(getClass().getResource("TelaEntrar.PNG"));
- 		JLabel label = new JLabel(img);
+ 		JLabel label = new JLabel(new ImageIcon(ViewEntrar.class.getResource("/Imagens/TelaEntrar.PNG")));
  		panel.setLayout(null);
  		
          label.setBounds(-120,-70,1600,900);
          panel.add(label);		
          
-         nomeField.setBounds(515,350,400,35);
+         nomeField.setBounds(515,350,350,35);
 	     nomeField.setBackground(cor);
 	     nomeField.setBorder(null);
 	     nomeField.setForeground(Color.WHITE);
@@ -59,9 +58,9 @@ public class ViewEntrar extends JFrame {
 	    senhaField.setBackground(cor);
 	    senhaField.setBorder(null);
 	    
-		login.setBounds(580,615,200,45);
+		login.setBounds(582,573,200,45);
 		login.setBackground(Color.white);
-		login.setFont(fonte);
+		login.setFont(new Font("Calibri", Font.BOLD, 25));
 		login.addActionListener( new ActionListener() {
 
 			//@Override
@@ -97,7 +96,7 @@ public class ViewEntrar extends JFrame {
 		panel.add(login);
 		panel.add(voltar);
 		
-		add(panel);
+		getContentPane().add(panel);
 		this.setVisible(true);
 //		this.setLayout(null);
 //		setLocationRelativeTo(null);

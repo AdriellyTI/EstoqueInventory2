@@ -59,27 +59,20 @@ public class Administrador extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JPanel panel = new JPanel();
-        ImageIcon img = new ImageIcon(getClass().getResource("ImagemCadastroAdm.PNG"));
-        JLabel label = new JLabel(img);
+        JLabel label = new JLabel(new ImageIcon(Administrador.class.getResource("/Imagens/ImagemCadastroAdm.PNG")));
         panel.setLayout(null);
 
         panel.add(lblFotoUser);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int labelWidth = img.getIconWidth();
-        int labelHeight = img.getIconHeight();
-        int x = (screenSize.width - labelWidth) / 2;
-        int y = (screenSize.height - labelHeight) / 2;
         label.setBounds(10, 0, 1356, 749);
 
         panel.add(label);
 
-        nomeField.setBounds(350, 435, 282, 30);
-        userNameField.setBounds(732, 428, 291, 37);
-        dataNascField.setBounds(350, 520, 282, 30);
-        telefoneField.setBounds(732, 258, 282, 30);
-        emailField.setBounds(732, 337, 282, 30);
-        senhaField.setBounds(732, 520, 282, 30);
+        nomeField.setBounds(345, 435, 282, 30);
+        userNameField.setBounds(730, 428, 291, 37);
+        dataNascField.setBounds(345, 520, 282, 30);
+        telefoneField.setBounds(730, 258, 282, 30);
+        emailField.setBounds(730, 337, 282, 30);
+        senhaField.setBounds(730, 520, 282, 30);
 
         JButton cadastrarButton = new JButton("SALVAR");
         cadastrarButton.setBackground(Color.WHITE);

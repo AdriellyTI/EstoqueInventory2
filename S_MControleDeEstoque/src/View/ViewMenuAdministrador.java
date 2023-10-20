@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class ViewMenuAdministrador extends JFrame{
 
@@ -25,7 +27,7 @@ public class ViewMenuAdministrador extends JFrame{
 	JButton btnVoltarEsto= new JButton("V");
 
 	JPanel painelF= new JPanel();
-    JButton btnfornecedores= new JButton("FORNECEDORES");
+    JButton btnfornecedores= new JButton("");
     JButton btnCadastrForn= new JButton("CADASTRAR FORNECEDORES");
     JButton btnHistForn=new JButton("HISTÓRICO DE FORNECIMENTO");
     
@@ -36,10 +38,9 @@ public class ViewMenuAdministrador extends JFrame{
     JPanel painelEsto= new JPanel();
     JButton btnAdicionar = new JButton("ADICIONAR PRODUTO");
     JButton btnVerEsto= new JButton("VISUALIZAR ESTOQUE");
+    Border borda=BorderFactory.createMatteBorder(0, 0, 3, 0, Color.WHITE);
     
-    
-    ImageIcon img = new ImageIcon(getClass().getResource("MenuAdmImagem.PNG"));
-	JLabel label = new JLabel(img);
+	JLabel label = new JLabel(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgMenuAdm.PNG")));
 	
 	Color cor= new Color(232, 232, 232);
     
@@ -62,10 +63,10 @@ public class ViewMenuAdministrador extends JFrame{
 		label.setBounds(-60,0,1500,750);
 		getContentPane().add(label);
 		
-		JButton btnFuncionarios = new JButton("FUNCIONARIOS");
+		JButton btnFuncionarios = new JButton("FUNCIONÁRIOS");
 		btnFuncionarios.setFont(new Font("Arial Black", Font.BOLD, 18));
 		btnFuncionarios.setBackground(Color.WHITE);
-		btnFuncionarios.setBounds(1028, 324, 200, 70);
+		btnFuncionarios.setBounds(1028, 337, 200, 57);
 		getContentPane().add(btnFuncionarios);
 		btnFuncionarios.addActionListener(new ActionListener() {
             @Override
@@ -73,10 +74,11 @@ public class ViewMenuAdministrador extends JFrame{
                 painelFun.setVisible(true);
             }
         });
+		
 		JButton btnVendas = new JButton("VENDAS");
 		btnVendas.setBackground(Color.WHITE);
 		btnVendas.setFont(new Font("Arial Black", Font.BOLD, 18));
-		btnVendas.setBounds(657, 324, 200, 70);
+		btnVendas.setBounds(657, 337, 200, 57);
 		getContentPane().add(btnVendas);
 		btnVendas.addActionListener(new ActionListener() {
 			@Override
@@ -88,7 +90,7 @@ public class ViewMenuAdministrador extends JFrame{
 		JButton btnFornecimento = new JButton("FORNECIEMENTO");
 		btnFornecimento.setBackground(Color.WHITE);
 		btnFornecimento.setFont(new Font("Arial Black", Font.BOLD, 16));
-		btnFornecimento.setBounds(1028, 571, 200, 70);
+		btnFornecimento.setBounds(1028, 584, 200, 51);
 		getContentPane().add(btnFornecimento);
 		btnFornecimento.addActionListener(new ActionListener() {
             @Override
@@ -112,9 +114,11 @@ public class ViewMenuAdministrador extends JFrame{
 		}
 
 		 });
-	
-		//FUNCIONALIDADES DOS BOTES DE FORNECEDORES
-		btnfornecedores.addActionListener(new ActionListener() {
+		 //FUNCIONALIDADES DOS BOTES DE FORNECEDORES
+		 btnfornecedores.setBounds(30,75,200,64);
+		 btnfornecedores.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnForn.PNG")));
+	     btnfornecedores.setBorder(borda);
+		 btnfornecedores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ViewContrlForn();
@@ -190,9 +194,8 @@ public class ViewMenuAdministrador extends JFrame{
 		//PAINEL DE FORNECEDORES
 		painelF.setLayout(null);
 		painelF.setBounds(0,0,300,750);
-		painelF.setBackground(Color.WHITE);
+		painelF.setBackground(new Color(22,144,186));
 		
-		btnfornecedores.setBounds(30,100,200,30);
 		btnCadastrForn.setBounds(30,150,200,30);
 		btnVoltarF.setBounds(250,500,50,35);
 		btnHistForn.setBounds(30,200,200,30);
@@ -237,7 +240,7 @@ public class ViewMenuAdministrador extends JFrame{
 		btnEstoque.setBackground(Color.WHITE);
 		 
 		
-		btnEstoque.setBounds(668, 571, 200, 70);
+		btnEstoque.setBounds(668, 584, 200, 57);
 		getContentPane().add(btnEstoque);
 		btnEstoque.addActionListener(new ActionListener() {
             @Override

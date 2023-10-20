@@ -1,19 +1,19 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 //import javax.swing.*;
 //import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class Logo extends JFrame {
 
@@ -23,15 +23,14 @@ public class Logo extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	Font fonte= new Font("Georgia",Font.BOLD,20);
-
+    Border borda=BorderFactory.createLineBorder(Color.BLACK, 3, false);
 	public Logo() {
 		
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        this.setSize(1600,900);
        
 		JPanel panel = new JPanel();
-	    ImageIcon img = new ImageIcon(getClass().getResource("ImagemLogo.png"));
-		JLabel label = new JLabel(img);
+		JLabel label = new JLabel(new ImageIcon(Logo.class.getResource("/Imagens/ImagemLogo.png")));
 		panel.setLayout(null);
 	//	setUndecorated (true);
 		
@@ -40,9 +39,12 @@ public class Logo extends JFrame {
         panel.add(label);
 		
 		JButton cadastrarButton= new JButton("CADASTRAR");
+		cadastrarButton.setForeground(new Color(255, 255, 255));
 	    cadastrarButton.setBackground(Color.white);
-	    cadastrarButton.setFont(fonte);
-	    cadastrarButton.setBounds(824,628,170,35);
+	    cadastrarButton.setFont(new Font("Georgia", Font.PLAIN, 20));
+	    cadastrarButton.setBounds(824,586,170,35);
+	    cadastrarButton.setBackground(new Color(22,144,186));
+	    cadastrarButton.setBorder(borda);
         cadastrarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -53,9 +55,12 @@ public class Logo extends JFrame {
         });
 	    
 		JButton entrarButton = new JButton("ENTRAR");
+		entrarButton.setForeground(new Color(255, 255, 255));
 		entrarButton.setBackground(Color.white);	
-		entrarButton.setFont(fonte);
-		entrarButton.setBounds(824,562,170,35);
+		entrarButton.setFont(new Font("Georgia", Font.PLAIN, 20));
+		entrarButton.setBounds(824,528,170,35);
+		entrarButton.setBackground(new Color(22,144,186));
+		entrarButton.setBorder(borda);
 		entrarButton.addActionListener(new ActionListener() {
 			
 			@Override

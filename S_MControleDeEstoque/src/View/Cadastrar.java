@@ -31,13 +31,7 @@ public class Cadastrar extends JFrame {
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Cadastrar.class.getResource("/Imagens/TelaCadastrar.png")));
 		panel.setLayout(null);
-		
-		
-//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//		int labelWidth = img.getIconWidth();
-//		int labelHeight = img.getIconHeight();
-//		int x = (screenSize.width - labelWidth) / 2;
-//		int y = (screenSize.height - labelHeight) / 2;
+	
 		label.setBounds(10, 0, 1356, 742);
 
 		panel.add(label);
@@ -51,8 +45,8 @@ public class Cadastrar extends JFrame {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					dispose();
 					new Administrador();
+					dispose();
 					
 				}
 	        });
@@ -67,8 +61,8 @@ public class Cadastrar extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
 				new Funcionario();
+				dispose();
 				
 			}
         });
