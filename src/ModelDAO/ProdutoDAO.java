@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
+import Model.ModelFornecimento;
 import Model.ModelProduto;
 
 public class ProdutoDAO {
@@ -122,54 +124,67 @@ public class ProdutoDAO {
 
 			 return listaAcesso;
 	 }
-}
-//   public void insertfornecimento(ModelFornecimento fnc) {
-//		 
-//	   String url="INSERT INTO Fornecimento(data,quantidade,idProduto) VALUES ('"+fnc.getDataFornec()+"','"+fnc.getQuantide()+"','"+fnc.getIdProduto()+"')";
-//	   
-//	   try {
-//					 
-//		    Connection conn = new Conexao().getConnection();
-//		     PreparedStatement stm = conn.prepareStatement(url);
-//			
-//			stm.execute();
-//			
-//			conn.close();
-//
-//		
-//		}catch (Exception e) {
-//			 e.printStackTrace(); 
-//		}
-//	   
-//	}
-//	
+	public void BuscarProduto(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao) {
+		
+		 String url = "SELECT *FROM produtos WHERE nome= ?";
+     try { 
+    	 conn=new Conexao().getConnection();
+    	 stm = conn.prepareStatement(url);
+    	 stm.setString(1,txtNome.getText());
+    	 rs=stm.executeQuery();
+    	 
+  		if (rs.next()) {
+  			
+          txtId.setText(rs.getString("id"));
+          txtNomeFornecedor.setText(rs.getString("nome_fornecedor"));
+		  txtPreco.setText(rs.getString("preco"));
+		  txtQuantEsto.setText(rs.getString("quantidade"));
+          txtDescricao.setText(rs.getString("descricao"));
+          
+  		}else {
+			 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
+             conn.close();
+  		}
+    	  
+    	  
+     }catch (Exception e) {
+     }
+		// TODO: handle exception
+	}
+	 
 
-//	public void BuscarProduto(JTextField txtId) {
-//		
-//		 String url = "SELECT *FROM produtos WHERE id= ?";
-//     try { 
-//    	 conn=new Conexao().getConnection();
-//    	 stm = conn.prepareStatement(url);
-//    	 stm.setString(1,txtId.getText());
-//    	 rs=stm.executeQuery();
-//    	 
-//  		if (rs.next()) {
-//  			
-//			 p.setNome(rs.getString("nome"));
-//			 p.setPreco(rs.getDouble("preco"));
-//			 p.setQuantidade(rs.getInt("quantidade"));
-//			 p.setNomeForn(rs.getString("nome_fornecedor"));
-//			 p.setDescrição(rs.getString("descricao"));
-//			 
-//  		}else {
-//			 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
-//             conn.close();
-//  		}
-//    	  
-//    	  
-//     }catch (Exception e) {
-//     }
-//		// TODO: handle exception
-//	}
-   
+   public void insertfornecimento(ModelFornecimento fnc) {
+		 
+	   String url="INSERT INTO Fornecimento(data,quantidadeForn,quantidadeEsto,nome_prduto,id_produto,nome_fornecedor,preçoProd) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	   
+	   try (PreparedStatement statement = conn.prepareStatement(url)) {
+					 
+		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	        Date dataNasc = new Date(sdf.parse(fnc.getDataFornec()).getTime());
+	        statement.setDate(1, dataNasc);
+	        
+		    statement.setInt(2, fnc.getQuantideForn());
+	        statement.setInt(3, fnc.getQuantidadeEstoque()); 
+	        statement.setString(4,fnc.getNomeProduto()); // Supondo que a quantidade seja um valor inteiro, ajuste o tipo de dado conforme necessário
+	        statement.setInt(5, fnc.getIdProduto());
+	        statement.setString(6, fnc.getNomeFornecedor());
+	        statement.setDouble(7,fnc.getPrecoProduto());
+
+		
+	        int confirma = statement.executeUpdate();
+
+	        if (confirma == 1) {
+	            JOptionPane.showMessageDialog(null, "Fornecimento Registrado!");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Não foi possível registrar!");
+	        }
+	    } catch (SQLException | ParseException e) {
+	        e.printStackTrace();
+	        JOptionPane.showMessageDialog(null, "Erro ao registrar fornecimento: " + e.getMessage());
+	    }
+	   
+	}
+	
+}
+
 

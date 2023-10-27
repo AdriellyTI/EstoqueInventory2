@@ -42,7 +42,7 @@ public class CadastroUsuariosDAO {
 	 public void insertFuncionario(CadastroFuncionario usuarioFunc,FileInputStream fis,int tamanho) throws SQLException {
 	    	
 	  
-		  String sql = "INSERT INTO Administrador(nomeCompleto, userName, dataNasc, tele, email, senha, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		  String sql = "INSERT INTO Funcionario(nomeCompleto, userName, dataNasc, tele, email, senha, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		    
 		    try (PreparedStatement statement = connection.prepareStatement(sql)) {
 		    	

@@ -12,9 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 public class ViewMenuAdministrador extends JFrame{
 
@@ -23,7 +24,7 @@ public class ViewMenuAdministrador extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	JButton btnVoltarF= new JButton("V");
+	JButton btnVoltarF= new JButton();
 	JButton btnVoltarFun= new JButton("V");
 	JButton btnVoltarEsto= new JButton("V");
 
@@ -44,8 +45,8 @@ public class ViewMenuAdministrador extends JFrame{
 	JLabel label = new JLabel(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgMenuAdm.PNG")));
 	
 	Color cor= new Color(232, 232, 232);
-    
-    
+	int x = 280;
+    int y=0;
 	public ViewMenuAdministrador(){
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,6 +97,25 @@ public class ViewMenuAdministrador extends JFrame{
 		btnFornecimento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
+            	  if ( y == 0 ) {
+                      painelF.show();
+                      painelF.setSize (x, 785);
+                       Thread th = new Thread() {
+                           @Override
+                           public void run() {
+                               try {
+                                   for (int i = 0; i <=  x;  i++) {
+                                       Thread.sleep(1); 
+                                       painelF.setSize(i, 785);
+                                   }
+                               }catch (Exception e){
+                                   JOptionPane.showMessageDialog(null, e);
+                               }
+                           }
+                           };th.start();
+                           x = 280;
+                       }
             	painelFornecedores();
             }
         });
@@ -136,6 +156,7 @@ public class ViewMenuAdministrador extends JFrame{
 	
 	public void painelFornecedores() {
 		
+		
 		  painelF.setVisible(true);
 		  painelF.setLayout(null);
 		  painelF.setBounds(0,0,300,750);
@@ -153,7 +174,9 @@ public class ViewMenuAdministrador extends JFrame{
                 }
         });
 		
-		btnCadastrForn.setBounds(30,150,200,30);
+		btnCadastrForn.setBounds(30,150,200,64);
+		btnCadastrForn.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnForn2.PNG")));
+		btnCadastrForn.setBorder(borda);
 		btnCadastrForn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -162,7 +185,8 @@ public class ViewMenuAdministrador extends JFrame{
             }
         });
 		
-		btnHistForn.setBounds(30,200,200,30);
+		btnHistForn.setBounds(30,250,200,64);
+		btnHistForn.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnForn3.PNG")));
 		btnHistForn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,11 +194,28 @@ public class ViewMenuAdministrador extends JFrame{
                 dispose();
             }
         });
-		btnVoltarF.setBounds(250,500,50,35);
+		btnVoltarF.setBounds(30,0,60,35);
+		btnVoltarF.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnMenu.PNG")));
 		btnVoltarF.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	painelF.setVisible(false);
+            	 if ( x == 280 ) {
+                     painelF.setSize (280, 785);
+                     Thread th = new Thread() {
+                         @Override
+                         public void run() {
+                             try {
+                                 for (int i = 280; i >=0;  i--) {
+                                     Thread.sleep(1); 
+                                     painelF.setSize(i, 785);
+                                 }
+                             }catch (Exception e){
+                                 JOptionPane.showMessageDialog(null, e);
+                             }
+                         }
+                             };th.start();
+                     x=0;
+                 }
             }
         });
 		painelF.add(btnfornecedores);

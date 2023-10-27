@@ -130,4 +130,5 @@ public class ViewEstoque extends JFrame  {
 		setLocationRelativeTo(null);
 
 	}
+	
 }

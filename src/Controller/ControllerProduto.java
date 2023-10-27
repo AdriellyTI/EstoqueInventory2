@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Model.ModelFornecimento;
 import Model.ModelProduto;
 import ModelDAO.Conexao;
 import ModelDAO.ProdutoDAO;
@@ -83,23 +85,20 @@ public void preencheTable(JTable tabela) {
       }
 
 	
-//      public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao)  {
-//    	  Vproduto.BuscarProduto(txtId);
-//    	  txtNome.setText(produto.getNome());
-//    	 // txtPreco=Integer.parseInt(produto.getPreco());
-//    	  txtNomeFornecedor.setText(produto.getNomeForn());
-//    	  txtDescricao.setText(produto.getDescrição());
-//      }
-//      public void reporProduto(String dataFornec,int quantidade,String idProduto) {
-//    	  
-//    	  ModelFornecimento frn= new ModelFornecimento(dataFornec,quantidade,idProduto);
-//    	  
-// 		 Connection conexao =new Conexao().getConnection();
-// 		 ProdutoDAO pdt= new ProdutoDAO(conexao);
-// 		 
-// 		// pdt.insertfornecimento(frn);
-//    	  
-//      }
+      public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao)  {
+    	Vproduto.BuscarProduto(txtId, txtNome, txtNomeFornecedor, txtQuantEsto, txtPreco, txtDescricao); 
+      }
+      
+      
+       public void registrarFornecimento(String dataFornec,int quantidadeForn,int quantidadeEstoque,String nomeProduto,int idProduto,String nomeFornecedor, Double precoProduto) {
+
+    	   ModelFornecimento mdFor= new ModelFornecimento(dataFornec,quantidadeForn,quantidadeEstoque,nomeProduto,idProduto,nomeFornecedor,precoProduto);
+  		 
+    	   Connection conexao =new Conexao().getConnection();
+  		    ProdutoDAO pdt= new ProdutoDAO(conexao);
+  		 
+  		 pdt.insertfornecimento(mdFor);
+       }
 	}
 	
 
