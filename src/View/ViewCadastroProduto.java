@@ -42,6 +42,8 @@ public class ViewCadastroProduto extends JFrame {
     private JButton btnCarrFoto = new JButton("Carregar Foto");
 
 	ControllerProduto product= new ControllerProduto();
+	private JTextField precoVendaField = new JTextField();
+;
 	
 
 	public void InitComponents() {
@@ -59,11 +61,14 @@ public class ViewCadastroProduto extends JFrame {
 		
 		panel.add(lblFotoP);
 		
-		nomeField.setBounds(172,511,390,25);
-		precoField.setBounds(744,367,208,20);
-		quantField.setBounds(744,289,208,25);
-		nomeFornField.setBounds(741,204,390,20);
-		descricaoField.setBounds(741,455,349,49);
+		nomeField.setBounds(172,511,366,30);
+		precoField.setBounds(744,490,208,25);
+		quantField.setBounds(1046,220,201,27);
+		nomeFornField.setBounds(743,217,275,30);
+		descricaoField.setBounds(742,387,349,49);
+		precoVendaField.setBounds(1046, 492, 201, 23);
+		precoVendaField.setColumns(10);
+		
 		
 		cadastrarButton.setBounds(501,590,160,40);
 	    cadastrarButton.setOpaque(false);
@@ -77,7 +82,7 @@ public class ViewCadastroProduto extends JFrame {
                 Cadastrar();
 			}
 		});
-        btnCarrFoto.setBounds(294, 362, 154, 30);
+        btnCarrFoto.setBounds(284, 366, 154, 30);
         btnCarrFoto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,6 +117,7 @@ public class ViewCadastroProduto extends JFrame {
 		panel.add(cadastrarButton);
 		panel.add(cancelarButton);
 		panel.add(btnCarrFoto);
+		panel.add(precoVendaField);
 		panel.setVisible(true);
 	}
 	
@@ -134,15 +140,17 @@ public class ViewCadastroProduto extends JFrame {
             }
         }
     }
+	
 	 private void Cadastrar() {
 	        try {
-	        	 String nome=nomeField.getText();
+	        	   String nome=nomeField.getText();
 	               double preco=Double.parseDouble(precoField.getText());
+	               double precoVenda=Double.parseDouble(precoVendaField.getText());
 	               int quantidade=Integer.parseInt(quantField.getText());
 	               String nomeForn= nomeFornField.getText();
 	               String descricao= descricaoField.getText();
-	         
-	               product.CadastrarProduto(nome, preco, quantidade, nomeForn, descricao, fis, tamanho);
+	              
+	               product.CadastrarProduto(nome, preco, quantidade, nomeForn, descricao,precoVenda, fis, tamanho);
 	        } catch (Exception e) {
 	            JOptionPane.showMessageDialog(null, e);
 	        }

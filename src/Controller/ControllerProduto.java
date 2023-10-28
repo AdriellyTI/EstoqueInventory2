@@ -1,9 +1,11 @@
 package Controller;
 import java.io.FileInputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -21,9 +23,9 @@ public class ControllerProduto {
 	ProdutoDAO Vproduto= new ProdutoDAO(null);
 	 ModelProduto produto= new ModelProduto();
 		
-	public void CadastrarProduto(String nome,double preco,int quantidade,String nomeForn,String descricao,FileInputStream fis,int tamanho) {
+	public void CadastrarProduto(String nome,double preco,int quantidade,String nomeForn,String descricao,double precoVenda,FileInputStream fis,int tamanho) {
 		
-		 ModelProduto produto= new ModelProduto(nome,preco,quantidade,nomeForn,descricao);
+		 ModelProduto produto= new ModelProduto(nome,preco,precoVenda,quantidade,nomeForn,descricao);
 		 
 		 Connection conexao =new Conexao().getConnection();
 		 ProdutoDAO pdt= new ProdutoDAO(conexao);
@@ -85,8 +87,8 @@ public void preencheTable(JTable tabela) {
       }
 
 	
-      public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao)  {
-    	Vproduto.BuscarProduto(txtId, txtNome, txtNomeFornecedor, txtQuantEsto, txtPreco, txtDescricao); 
+      public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao,JLabel lblFoto)  {
+    	Vproduto.BuscarProduto(txtId, txtNome, txtNomeFornecedor, txtQuantEsto, txtPreco, txtDescricao,lblFoto); 
       }
       
       

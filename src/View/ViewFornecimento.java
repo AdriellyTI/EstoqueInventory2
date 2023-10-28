@@ -4,18 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.nio.IntBuffer;
+import java.sql.Blob;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import Controller.ControllerProduto;
-import Model.ModelProduto;
-import ModelDAO.ProdutoDAO;
 
 public class ViewFornecimento extends JFrame {
 
@@ -30,58 +31,78 @@ public class ViewFornecimento extends JFrame {
     JButton btnVoltar = new JButton();
     ControllerProduto obj5= new ControllerProduto();
 
+    Border borda=BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK);
+
   	private JTextField txtNomeFornecedor;
   	private JTextField txtDescricao;
   	private final JTextField txtQuantEsto = new JTextField();
-  	 
+  	private final JTextField precoCompraField = new JTextField();
+  	private final JLabel lblFoto = new JLabel();
+  	private final JTextField precoTotalComField = new JTextField();
+  	
 	public ViewFornecimento() {
 		
-		this.setSize(1500,750);		
-		this.setVisible(true);
-		this.setTitle("Fornecimeto");
-		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
-        JLabel label = new JLabel(new ImageIcon(ViewFornecimento.class.getResource("/Imagens/imgTelaReporProduto.png")));
-
-		label.setBounds(10, 0, 1356, 749);
-		getContentPane().add(label);
 		
+
+		JPanel panel = new JPanel();
+        JLabel label = new JLabel(new ImageIcon(ViewFornecimento.class.getResource("/Imagens/imgTelaReporProduto.png")));
+		label.setBounds(10, 0, 1356, 749);
+		panel.setLayout(null);
+		
+		precoTotalComField.setBounds(144, 589, 189, 30);
+		precoTotalComField.setColumns(10);
+		precoTotalComField.setFont(fonte);
+		precoTotalComField.setBorder(borda);
+		
+		precoCompraField.setBounds(144, 375, 189, 30);
+		precoCompraField.setColumns(10);
+		precoCompraField.setBorder(borda);
+		
+		lblFoto.setIcon(new ImageIcon(ViewFornecimento.class.getResource("/Imagens/imgProduto.PNG")));
+		lblFoto.setBounds(800, 165, 117, 118);
+
 		btnVoltar.setBounds(53, 11, 62, 55);
 	    btnVoltar.setOpaque(false);
   		btnVoltar.setContentAreaFilled(false);
 	    btnVoltar.setBorderPainted(false);
 
-		txtData.setBounds(99,256,189,30);
+		txtData.setBounds(144,253,189,30);
 		txtData.setFont(fonte);
+		txtData.setBorder(borda);
 		
-		txtQuantEsto.setBounds(899, 304, 200, 30);
+		txtQuantEsto.setBounds(956, 226, 200, 30);
 		txtQuantEsto.setColumns(10);
 		txtQuantEsto.setFont(fonte);
-		
+		txtQuantEsto.setBorder(borda);
 
-		txtNome.setBounds(99,387,361,30);
+		txtNome.setBounds(144,452,361,30);
 		txtNome.setFont(fonte);
-
-		txtId.setBounds(899,181,189,32);
+        txtNome.setBorder(borda);
+        
+		txtId.setBounds(956,174,177,22);
 		txtId.setFont(fonte);
+		txtId.setBorder(borda);
 		
-		txtQuant.setBounds(99,325,189,30);
+		txtQuant.setBounds(144,315,209,30);
 		txtQuant.setFont(fonte);
+		txtQuant.setBorder(borda);
 		
-		txtPreco.setBounds(899,367,146,30);
+		txtPreco.setBounds(966,435,146,30);
 		txtPreco.setFont(fonte);
+		txtPreco.setBorder(borda);
 		
 		txtNomeFornecedor = new JTextField();
-		txtNomeFornecedor.setBounds(899, 238, 300, 30);
+		txtNomeFornecedor.setBounds(956, 288, 300, 30);
 		txtNomeFornecedor.setColumns(10);
 		txtNomeFornecedor.setFont(fonte);
-
+        txtNomeFornecedor.setBorder(borda);
+        
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(899, 430, 300, 74);
+		txtDescricao.setBounds(966, 365, 300, 47);
 		txtDescricao.setColumns(10);
 		txtDescricao.setFont(fonte);
-		
-
+        txtDescricao.setBorder(borda);
+        
 		btnVoltar.addActionListener((new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +122,8 @@ public class ViewFornecimento extends JFrame {
 					JOptionPane.showMessageDialog(null, "O campo 'id' não foi prenchido.");
 					txtNome.requestFocus();
 				}else {
-				obj5.MostrarDadosProdutos(txtId,txtNome,txtQuantEsto,txtPreco,txtNomeFornecedor,txtDescricao);
+
+				obj5.MostrarDadosProdutos(txtId,txtNome,txtQuantEsto,txtPreco,txtNomeFornecedor,txtDescricao,lblFoto);
 			}
 				}
         }));
@@ -122,17 +144,28 @@ public class ViewFornecimento extends JFrame {
 			}
         }));
 		
-		getContentPane().add(txtData);
-		getContentPane().add(txtNome);
-		getContentPane().add(txtId);
-		getContentPane().add(txtQuant);
-		getContentPane().add(txtPreco);
-		getContentPane().add(txtNomeFornecedor);
-		getContentPane().add(txtDescricao);
-		getContentPane().add(txtQuantEsto);
-		getContentPane().add(btnVoltar);
-		getContentPane().add(btnBuscar);
-		getContentPane().add(btnReporEsto);
+		this.setVisible(true);
+		this.setSize(1600,900);
+		this.setLocationRelativeTo(null);
+		
+		panel.add(lblFoto);
+		getContentPane().add(panel);
+        panel.add(label);
+		panel.add(txtData);
+	    panel.add(txtNome);
+		panel.add(txtId);
+		panel.add(txtQuant);
+		panel.add(txtPreco);
+		panel.add(txtNomeFornecedor);
+		panel.add(txtDescricao);
+		panel.add(txtQuantEsto);
+		panel.add(btnVoltar);
+		panel.add(btnBuscar);
+		panel.add(btnReporEsto);
+		panel.add(precoCompraField);
+		
+		panel.add(precoTotalComField);
+		panel.setVisible(true);
 		
 	}
 	public static void main(String [] args) {

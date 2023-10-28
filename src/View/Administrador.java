@@ -84,6 +84,8 @@ public class Administrador extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cadastrar();
+                new Logo();
+                dispose();
             }
         });
 

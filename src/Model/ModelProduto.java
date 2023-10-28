@@ -6,6 +6,7 @@ public class ModelProduto {
 	private int id;
 	private String nome;
 	private double preco;
+	private double precoVenda;
 	private int quantidade;
 	private String nomeForn;
 	private String descricao;
@@ -24,15 +25,18 @@ public class ModelProduto {
 	public ModelProduto() {
 		
 	}
-	public ModelProduto(String nome, double preco, int quantidade, String nomeForn, String descrição) {
+	
+	public ModelProduto(String nome, double preco, double precoVenda, int quantidade, String nomeForn,
+			String descricao) {
 		super();
 		this.nome = nome;
 		this.preco = preco;
+		this.precoVenda = precoVenda;
 		this.quantidade = quantidade;
 		this.nomeForn = nomeForn;
-		this.descricao = descrição;
+		this.descricao = descricao;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -51,6 +55,15 @@ public class ModelProduto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+	
+	public double getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(double precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
 	public int getQuantidade() {
 		return quantidade;
 	}

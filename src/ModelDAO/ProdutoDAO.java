@@ -1,7 +1,11 @@
 package ModelDAO;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,6 +16,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -29,18 +37,18 @@ public class ProdutoDAO {
 		this.conn=conn;
 	}
 	
-	
-	
+	 
 	 public void insertProduto(ModelProduto produto, FileInputStream fis, int tamanho) throws SQLException {
-		    String url = "INSERT INTO produtos(nome, preco, quantidade, nome_fornecedor, descricao, foto) VALUES (?, ?, ?, ?, ?, ?)";
+		    String url = "INSERT INTO produtos(nome, preco_Compra,preco_venda, quantidade, nome_fornecedor, descricao, foto) VALUES (?, ?, ?, ?, ?, ?,?)";
 
 		    try (PreparedStatement statement = conn.prepareStatement(url)) {
 		        statement.setString(1, produto.getNome());
-		        statement.setDouble(2, produto.getPreco()); // Supondo que o preço seja um valor numérico, ajuste o tipo de dado conforme necessário
-		        statement.setInt(3, produto.getQuantidade()); // Supondo que a quantidade seja um valor inteiro, ajuste o tipo de dado conforme necessário
-		        statement.setString(4, produto.getNomeForn());
-		        statement.setString(5, produto.getDescricao());
-		        statement.setBinaryStream(6, fis, tamanho);
+		        statement.setDouble(2, produto.getPreco());
+		        statement.setDouble(3, produto.getPrecoVenda());;
+		        statement.setInt(4, produto.getQuantidade()); // Supondo que a quantidade seja um valor inteiro, ajuste o tipo de dado conforme necessário
+		        statement.setString(5, produto.getNomeForn());
+		        statement.setString(6, produto.getDescricao());
+		        statement.setBinaryStream(7, fis, tamanho);
 
 		        statement.executeUpdate();
 		        System.out.println("Produto inserido com sucesso!");
@@ -78,7 +86,7 @@ public class ProdutoDAO {
 					
 			     p.setId(rs.getInt("id"));
 				 p.setNome(rs.getString("nome"));
-				 p.setPreco(rs.getDouble("preco"));
+				 p.setPreco(rs.getDouble("preco_venda"));
 				 p.setQuantidade(rs.getInt("quantidade"));
 				 p.setNomeForn(rs.getString("nome_fornecedor"));
 				 p.setDescricao(rs.getString("descricao"));
@@ -111,7 +119,7 @@ public class ProdutoDAO {
 					
 			     p2.setId(rs.getInt("id"));
 				 p2.setNome(rs.getString("nome"));
-				 p2.setPreco(rs.getDouble("preco"));
+				 p2.setPreco(rs.getDouble("preco_venda"));
 				 p2.setQuantidade(rs.getInt("quantidade"));
 				 p2.setNomeForn(rs.getString("nome_fornecedor"));
 				 p2.setDescricao(rs.getString("descricao"));
@@ -124,7 +132,7 @@ public class ProdutoDAO {
 
 			 return listaAcesso;
 	 }
-	public void BuscarProduto(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao) {
+	public void BuscarProduto(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao,JLabel lblFoto) {
 		
 		 String url = "SELECT *FROM produtos WHERE nome= ?";
      try { 
@@ -134,12 +142,25 @@ public class ProdutoDAO {
     	 rs=stm.executeQuery();
     	 
   		if (rs.next()) {
-  			
           txtId.setText(rs.getString("id"));
           txtNomeFornecedor.setText(rs.getString("nome_fornecedor"));
-		  txtPreco.setText(rs.getString("preco"));
+		  txtPreco.setText(rs.getString("preco_venda"));
 		  txtQuantEsto.setText(rs.getString("quantidade"));
           txtDescricao.setText(rs.getString("descricao"));
+          Blob  blob=(Blob) rs.getBlob("foto");
+          
+          byte[] img=blob.getBytes(1, (int) blob.length());
+          BufferedImage  image=null;
+          
+          try {
+          image=ImageIO.read(new ByteArrayInputStream(img));
+          
+          } catch (Exception e) {
+        	  System.out.println(e);
+		}
+          ImageIcon icone= new ImageIcon(image);
+          Icon foto= new ImageIcon(icone.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_SMOOTH));
+          lblFoto.setIcon(foto);
           
   		}else {
 			 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
@@ -147,9 +168,9 @@ public class ProdutoDAO {
   		}
     	  
     	  
-     }catch (Exception e) {
+     }catch (Exception ex) {
+    	 System.out.println(ex);
      }
-		// TODO: handle exception
 	}
 	 
 
