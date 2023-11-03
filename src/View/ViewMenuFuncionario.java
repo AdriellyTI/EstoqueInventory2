@@ -77,7 +77,7 @@ public class ViewMenuFuncionario extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-               new ViewCadastroProduto();				
+               new ViewFornecimento();			
 			}
 		});
 		

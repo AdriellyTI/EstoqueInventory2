@@ -23,7 +23,8 @@ import View.ViewFornecedor;
 
 public class ControllerCadastro {
 
-	
+    CadastroAdm administrador1= new CadastroAdm();
+
 	
 	public void CadastrarUsuarioAdm(String nome,String userName,String dataNasc,String telefone,String email,String senha,FileInputStream fis,int tamanho ) throws SQLException {
 		
@@ -53,8 +54,8 @@ public class ControllerCadastro {
 	}
 
 
-	public void mostrarDados(String nome, String userName,String dataNasc,String telefone,String email) {
-		
+	public void mostrarDados(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel lblIdadeUserRet) {
+		administrador1.MostrarDadosUser(lblFotoUser,lblNomeUserRet,lblNomeCompletoRet,lblEmailUserRet,lblIdadeUserRet);
 	}
 	
 	

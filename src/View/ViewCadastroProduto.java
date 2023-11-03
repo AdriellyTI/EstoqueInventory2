@@ -104,9 +104,10 @@ public class ViewCadastroProduto extends JFrame {
 		});
 
 		this.setVisible(true);
-		this.setSize(1600,900);
+		this.setSize(1350, 750);
 		this.setLocationRelativeTo(null);
-		
+		this.setResizable(false);
+
 		getContentPane().add(panel);
 		panel.add(label);
 		panel.add(nomeField);

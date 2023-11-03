@@ -8,24 +8,19 @@ import javax.swing.JOptionPane;
 
 public class Conexao {
 
-	
 	public static Connection conn;
-			
-	public  Connection getConnection() {
-		
+
+	public Connection getConnection() {
+
 		try {
-		    Class.forName("com.mysql.cj.jdbc.Driver");
-		    conn = DriverManager.getConnection("jdbc:mysql://localhost/EsttoqueMM", "root", "asds2006");
-		    
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/EsttoqueMM", "root", "asds2006");
+
 		} catch (ClassNotFoundException | SQLException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 		return conn;
-		
-		
 
-	
-}
+	}
 
 }
-

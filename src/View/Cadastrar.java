@@ -25,8 +25,12 @@ public class Cadastrar extends JFrame {
 	Cadastrar() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+
+		this.setSize(1350, 750);
+		this.setVisible(true);
+		this.setTitle("Cadastrar");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Cadastrar.class.getResource("/Imagens/TelaCadastrar.png")));

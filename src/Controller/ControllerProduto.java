@@ -1,11 +1,12 @@
 package Controller;
 import java.io.FileInputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -85,10 +86,9 @@ public void preencheTable(JTable tabela) {
   		}
   		}
       }
-
-	
       public void MostrarDadosProdutos(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao,JLabel lblFoto)  {
-    	Vproduto.BuscarProduto(txtId, txtNome, txtNomeFornecedor, txtQuantEsto, txtPreco, txtDescricao,lblFoto); 
+    	  ModelProduto obj2= new ModelProduto();
+    	obj2.BuscarProduto2(txtId, txtNome, txtNomeFornecedor, txtQuantEsto, txtPreco, txtDescricao,lblFoto); 
       }
       
       
@@ -103,7 +103,7 @@ public void preencheTable(JTable tabela) {
        }
 	}
 	
-
+  
 
 
 	

@@ -41,12 +41,14 @@ public class ViewEntrar extends JFrame {
     public ViewEntrar(){
     	
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1600,900);
-        
+        this.setSize(1350, 750);
+        this.setLocationRelativeTo(null);
+		this.setResizable(false);
+
  		JPanel panel = new JPanel();
  		JLabel label = new JLabel(new ImageIcon(ViewEntrar.class.getResource("/Imagens/TelaEntrar.PNG")));
  		panel.setLayout(null);
- 		
+
          label.setBounds(-120,-70,1600,900);
          panel.add(label);		
          

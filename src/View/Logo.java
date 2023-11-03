@@ -26,14 +26,15 @@ public class Logo extends JFrame {
     Border borda=BorderFactory.createLineBorder(Color.BLACK, 3, false);
 	public Logo() {
 		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.setSize(1600,900);
+	   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       this.setSize(1350, 750);
        
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Logo.class.getResource("/Imagens/ImagemLogo.png")));
 		panel.setLayout(null);
 	//	setUndecorated (true);
-		
+		this.setLocationRelativeTo(null);
+
         label.setBounds(-120,-130,1600,900);
 		
         panel.add(label);

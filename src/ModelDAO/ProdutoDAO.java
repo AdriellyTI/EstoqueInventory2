@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -132,48 +131,7 @@ public class ProdutoDAO {
 
 			 return listaAcesso;
 	 }
-	public void BuscarProduto(JTextField txtId,JTextField txtNome,JTextField txtPreco,JTextField txtNomeFornecedor,JTextField txtQuantEsto,JTextField txtDescricao,JLabel lblFoto) {
-		
-		 String url = "SELECT *FROM produtos WHERE nome= ?";
-     try { 
-    	 conn=new Conexao().getConnection();
-    	 stm = conn.prepareStatement(url);
-    	 stm.setString(1,txtNome.getText());
-    	 rs=stm.executeQuery();
-    	 
-  		if (rs.next()) {
-          txtId.setText(rs.getString("id"));
-          txtNomeFornecedor.setText(rs.getString("nome_fornecedor"));
-		  txtPreco.setText(rs.getString("preco_venda"));
-		  txtQuantEsto.setText(rs.getString("quantidade"));
-          txtDescricao.setText(rs.getString("descricao"));
-          Blob  blob=(Blob) rs.getBlob("foto");
-          
-          byte[] img=blob.getBytes(1, (int) blob.length());
-          BufferedImage  image=null;
-          
-          try {
-          image=ImageIO.read(new ByteArrayInputStream(img));
-          
-          } catch (Exception e) {
-        	  System.out.println(e);
-		}
-          ImageIcon icone= new ImageIcon(image);
-          Icon foto= new ImageIcon(icone.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_SMOOTH));
-          lblFoto.setIcon(foto);
-          
-  		}else {
-			 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
-             conn.close();
-  		}
-    	  
-    	  
-     }catch (Exception ex) {
-    	 System.out.println(ex);
-     }
-	}
-	 
-
+	
    public void insertfornecimento(ModelFornecimento fnc) {
 		 
 	   String url="INSERT INTO Fornecimento(data,quantidadeForn,quantidadeEsto,nome_prduto,id_produto,nome_fornecedor,preçoProd) VALUES (?, ?, ?, ?, ?, ?, ?)";

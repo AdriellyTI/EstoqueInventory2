@@ -74,6 +74,7 @@ public class CadastroUsuariosDAO {
 
 	
 	 public void insertAdm(CadastroAdm usuarioAdm,FileInputStream fis,int tamanho) {
+		 
 		    String sql = "INSERT INTO Administrador(nomeCompleto, userName, dataNasc, tele, email, senha, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		    
 		    try (PreparedStatement statement = connection.prepareStatement(sql)) {

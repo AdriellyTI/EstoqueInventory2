@@ -53,27 +53,25 @@ public class Funcionario extends JFrame {
     /**
      * @wbp.nonvisual location=451,269
      */
-    private final JLabel label_1 = new JLabel("");
     
 	public Funcionario() {
-		label_1.setIcon(new ImageIcon(Funcionario.class.getResource("/Imagens/imgFotoUser.PNG")));
-		label_1.setBounds(380, 201, 154, 148);
+		lblFotoUser.setIcon(new ImageIcon(Funcionario.class.getResource("/Imagens/imgPerfilFunc.PNG")));
+		lblFotoUser.setBounds(380, 201, 154, 148);
 		
 		funcionario= new ControllerCadastro();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("CADASTRO DE FUNCIONÁRIO");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        this.setSize(1350, 750);
+		this.setVisible(true);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		
         JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Funcionario.class.getResource("/Imagens/ImagemCadastroFunc.PNG")));
 		panel.setLayout(null);
-		panel.add(label_1);
+		panel.add(lblFotoUser);
 
-//		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//		int labelWidth = img.getIconWidth();
-//		int labelHeight = img.getIconHeight();
-//		int x = (screenSize.width - labelWidth) / 2;
-//		int y = (screenSize.height - labelHeight) / 2;
+
 		label.setBounds(10, 0, 1356, 749);
 
 		panel.add(label);
@@ -138,11 +136,11 @@ public class Funcionario extends JFrame {
         panel.add(btnCarrFoto);
         getContentPane().add(panel);
         panel.setVisible(true);
-        setVisible(true);
+       
     }
 	  private void CarregarFoto() {
 		  
-	        jfcFoto.setDialogTitle("Selecionar Foto");
+		  jfcFoto.setDialogTitle("Selecionar Foto");
 	        jfcFoto.setFileFilter(new FileNameExtensionFilter("Arquivo de imagens(.PNG,.JPG,*.JPEG)", "png", "jpg", "jpeg"));
 	        int resultado = jfcFoto.showOpenDialog(this);
 	        if (resultado == JFileChooser.APPROVE_OPTION) {
@@ -167,8 +165,8 @@ public class Funcionario extends JFrame {
 	            String email = emailField.getText();
 	            String senha = new String(senhaField.getPassword());
 	            String telefone = telefoneField.getText();
+	            
                 funcionario.CadastroFunc(nome, userName, dataNasc, telefone, email,senha,fis,tamanho);
-
 	        } catch (Exception e) {
 	            JOptionPane.showMessageDialog(null, e);
 	        }

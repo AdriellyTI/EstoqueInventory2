@@ -4,19 +4,27 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Blob;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import Controller.ControllerProduto;
+import Model.ModelProduto;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ViewFornecimento extends JFrame {
 
@@ -39,17 +47,20 @@ public class ViewFornecimento extends JFrame {
   	private final JTextField precoCompraField = new JTextField();
   	private final JLabel lblFoto = new JLabel();
   	private final JTextField precoTotalComField = new JTextField();
-  	
+  	private final JScrollPane scrProdutos = new JScrollPane();
+	JList listNomePr = new JList();
+
 	public ViewFornecimento() {
 		
 		
 
 		JPanel panel = new JPanel();
         JLabel label = new JLabel(new ImageIcon(ViewFornecimento.class.getResource("/Imagens/imgTelaReporProduto.png")));
+      
 		label.setBounds(10, 0, 1356, 749);
 		panel.setLayout(null);
 		
-		precoTotalComField.setBounds(144, 589, 189, 30);
+		precoTotalComField.setBounds(144, 670, 189, 30);
 		precoTotalComField.setColumns(10);
 		precoTotalComField.setFont(fonte);
 		precoTotalComField.setBorder(borda);
@@ -74,10 +85,32 @@ public class ViewFornecimento extends JFrame {
 		txtQuantEsto.setColumns(10);
 		txtQuantEsto.setFont(fonte);
 		txtQuantEsto.setBorder(borda);
-
-		txtNome.setBounds(144,452,361,30);
+		
+		listNomePr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//System.out.println("Teste");
+				
+		    	buscarNaLista();
+			}
+		});
+		listNomePr.setBorder(null);
+		scrProdutos.setViewportView(listNomePr);
+		txtNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				ModelProduto obj=new ModelProduto();
+				obj.BuscarPorNome(listNomePr, scrProdutos, txtNome);
+				scrProdutos.setVisible(true);			
+				if (txtNome.getText().length()==0) {
+					scrProdutos.setVisible(false);
+				}
+				}
+		});
+	
+		txtNome.setBounds(144,452,348,30);
 		txtNome.setFont(fonte);
-        txtNome.setBorder(borda);
+        txtNome.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
         
 		txtId.setBounds(956,174,177,22);
 		txtId.setFont(fonte);
@@ -106,15 +139,15 @@ public class ViewFornecimento extends JFrame {
 		btnVoltar.addActionListener((new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ViewMenuAdministrador();
+				new ViewMenuFuncionario();
 				dispose();
 			}
         }));
 		JButton btnBuscar = new JButton("BUSCAR\r\n");
-		btnBuscar.setFont(new Font("Arial Black", Font.BOLD, 13));
-		btnBuscar.setBackground(Color.WHITE);
-		btnBuscar.setForeground(Color.BLACK);
-		btnBuscar.setBounds(521, 385, 117, 32);
+		btnBuscar.setFont(new Font("Tox Typewriter", Font.BOLD, 16));
+		btnBuscar.setBackground(new Color( 22,115,187));
+		btnBuscar.setForeground(Color.WHITE);
+		btnBuscar.setBounds(581, 452, 117, 32);
 		btnBuscar.addActionListener((new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -145,8 +178,14 @@ public class ViewFornecimento extends JFrame {
         }));
 		
 		this.setVisible(true);
-		this.setSize(1600,900);
+		this.setSize(1350, 750);
 		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		scrProdutos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		scrProdutos.setVisible(false);
+		scrProdutos.setBounds(144, 490, 325, 135);
+		
+		panel.add(scrProdutos);
 		
 		panel.add(lblFoto);
 		getContentPane().add(panel);
@@ -168,6 +207,18 @@ public class ViewFornecimento extends JFrame {
 		panel.setVisible(true);
 		
 	}
+	
+	private void buscarNaLista() {
+		 ModelProduto obj6= new ModelProduto();
+		 if (txtNome.getText().length()==0) {
+				scrProdutos.setVisible(false);
+			}
+			String linha=(String) listNomePr.getSelectedValue();
+			txtNome.setText(linha);
+			obj6.BuscarProduto2(txtId, txtNome, txtPreco, txtNomeFornecedor, txtQuantEsto, txtDescricao, lblFoto);
+	}
+	
+	
 	public static void main(String [] args) {
 	     new ViewFornecimento();	
 	}

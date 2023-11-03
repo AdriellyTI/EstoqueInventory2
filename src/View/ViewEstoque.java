@@ -125,9 +125,11 @@ public class ViewEstoque extends JFrame  {
 	    add(nomeProdutoField);
 		add(labelImg);
 		//add(voltarB);
-		setSize(1500,750);
+		setSize(1350, 750);
 		setVisible(true);
 		setLocationRelativeTo(null);
+		this.setResizable(false);
+
 
 	}
 	

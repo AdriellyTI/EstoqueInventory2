@@ -51,12 +51,14 @@ public class Administrador extends JFrame {
         btnCarrFoto.setFont(new Font("Arial", Font.PLAIN, 13));
         btnCarrFoto.setBackground(Color.WHITE);
 
-        lblFotoUser.setIcon(new ImageIcon(Administrador.class.getResource("/Imagens/imgFotoUser.PNG")));
+        lblFotoUser.setIcon(new ImageIcon(Administrador.class.getResource("/Imagens/imgFotoUser2.PNG")));
         lblFotoUser.setBounds(380, 201, 154, 148);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("CADASTRO DO(A) ADMINISTRADOR(A)");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setSize(1350, 750);
+        this.setLocationRelativeTo(null);
+		this.setResizable(false);
 
         JPanel panel = new JPanel();
         JLabel label = new JLabel(new ImageIcon(Administrador.class.getResource("/Imagens/ImagemCadastroAdm.PNG")));
