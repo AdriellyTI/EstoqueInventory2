@@ -90,3 +90,14 @@ DROP DATABASE EsttoqueMM;
 DROP TABLE Administrador;
 
 describe Administrador;
+DELIMITER $
+
+CREATE TRIGGER Tgr_AtualizarPr AFTER INSERT
+ON Fornecimento
+FOR EACH ROW
+BEGIN
+	UPDATE Produtos SET quantidade = quantidade + NEW.quantidadeForn
+WHERE id = NEW.id_produto;
+END$
+
+DELIMITER ;
