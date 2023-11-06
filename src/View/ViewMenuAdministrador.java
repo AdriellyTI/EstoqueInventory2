@@ -37,7 +37,7 @@ public class ViewMenuAdministrador extends JFrame {
 
 	JPanel painelFun = new JPanel();
 	JButton btnFunAtivo = new JButton("FUNCIOÁRIOS ATIVOS");
-	JButton btnExcluirFun = new JButton("EXCLUIR FUNCIONÁRIO");
+	JButton btnExcluirFun = new JButton(" FUNCIONÁRIOS INATIVOS");
 
 	JPanel painelEsto = new JPanel();
 	JButton btnAdicionar = new JButton("ADICIONAR PRODUTO");
@@ -89,7 +89,7 @@ public class ViewMenuAdministrador extends JFrame {
 		getContentPane().add(label);
 
 		JButton btnFuncionarios = new JButton("FUNCIONÁRIOS");
-		btnFuncionarios.setFont(new Font("Tox Typewriter", Font.BOLD, 21));
+		btnFuncionarios.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 21));
 		btnFuncionarios.setBackground(Color.WHITE);
 		btnFuncionarios.setBounds(1028, 337, 200, 57);
 		getContentPane().add(btnFuncionarios);
@@ -102,7 +102,7 @@ public class ViewMenuAdministrador extends JFrame {
 
 		JButton btnVendas = new JButton("VENDAS");
 		btnVendas.setBackground(Color.WHITE);
-		btnVendas.setFont(new Font("Tox Typewriter", Font.BOLD, 25));
+		btnVendas.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 25));
 		btnVendas.setBounds(657, 337, 200, 57);
 		getContentPane().add(btnVendas);
 		btnVendas.addActionListener(new ActionListener() {
@@ -114,7 +114,7 @@ public class ViewMenuAdministrador extends JFrame {
 
 		JButton btnFornecimento = new JButton("FORNECIEMENTO");
 		btnFornecimento.setBackground(Color.WHITE);
-		btnFornecimento.setFont(new Font("Tox Typewriter", Font.BOLD, 21));
+		btnFornecimento.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 21));
 		btnFornecimento.setBounds(1028, 584, 200, 51);
 		getContentPane().add(btnFornecimento);
 		btnFornecimento.addActionListener(new ActionListener() {
@@ -157,7 +157,7 @@ public class ViewMenuAdministrador extends JFrame {
 		});
 
 		JButton btnEstoque = new JButton("ESTOQUE");
-		btnEstoque.setFont(new Font("Tox Typewriter", Font.BOLD, 25));
+		btnEstoque.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 25));
 		btnEstoque.setBackground(Color.WHITE);
 
 		btnEstoque.setBounds(668, 584, 200, 57);
@@ -208,6 +208,7 @@ public class ViewMenuAdministrador extends JFrame {
 		painelF.setVisible(true);
 		painelF.setLayout(null);
 	//	painelF.setBounds(0, 0, 300, 750);
+		painelF.setBorder(borda);
 		painelF.setBackground(new Color( 22,115,187));
 
 		btnfornecedores.setBounds(30, 75, 200, 64);

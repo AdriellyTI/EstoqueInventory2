@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class Logo extends JFrame {
 
@@ -32,7 +35,7 @@ public class Logo extends JFrame {
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Logo.class.getResource("/Imagens/ImagemLogo.png")));
 		panel.setLayout(null);
-	//	setUndecorated (true);
+		setUndecorated (true);
 		this.setLocationRelativeTo(null);
 
         label.setBounds(-120,-130,1600,900);
@@ -40,12 +43,11 @@ public class Logo extends JFrame {
         panel.add(label);
 		
 		JButton cadastrarButton= new JButton("CADASTRAR");
-		cadastrarButton.setForeground(new Color(255, 255, 255));
+		cadastrarButton.setForeground(new Color(0, 0, 0));
 	    cadastrarButton.setBackground(Color.white);
-	    cadastrarButton.setFont(new Font("Georgia", Font.PLAIN, 20));
+	    cadastrarButton.setFont(new Font("Tox Typewriter", Font.PLAIN, 20));
 	    cadastrarButton.setBounds(824,586,170,35);
-	    cadastrarButton.setBackground(new Color(22,144,186));
-	    cadastrarButton.setBorder(borda);
+	    cadastrarButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
         cadastrarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -56,12 +58,11 @@ public class Logo extends JFrame {
         });
 	    
 		JButton entrarButton = new JButton("ENTRAR");
-		entrarButton.setForeground(new Color(255, 255, 255));
-		entrarButton.setBackground(Color.white);	
-		entrarButton.setFont(new Font("Georgia", Font.PLAIN, 20));
+		entrarButton.setForeground(new Color(0, 0, 0));
+		entrarButton.setBackground(Color.WHITE);	
+		entrarButton.setFont(new Font("Tox Typewriter", Font.PLAIN, 20));
 		entrarButton.setBounds(824,528,170,35);
-		entrarButton.setBackground(new Color(22,144,186));
-		entrarButton.setBorder(borda);
+		entrarButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		entrarButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -76,13 +77,16 @@ public class Logo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		         dispose();
+		         
+		  	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 			}
 		});
 		
 		panel.add(cadastrarButton); 
 		panel.add(entrarButton);
 		getContentPane().add(panel);
-		//panel.add(btnSair);
+		panel.add(btnSair);
 		setVisible(true);
 	}
 		

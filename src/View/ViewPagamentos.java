@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.ControllerPagamentos;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ViewPagamentos extends JFrame {
 
@@ -89,6 +91,21 @@ public class ViewPagamentos extends JFrame {
         panel.add(efetuar);
         panel.add(cancelar);
         
+        JButton btnVoltar = new JButton("");
+        btnVoltar.setOpaque(false);
+        btnVoltar.setContentAreaFilled(false);
+        btnVoltar.setBorderPainted(false);
+        btnVoltar.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		new ViewMenuFuncionario();
+        		dispose();
+        		
+        	}
+        });
+        btnVoltar.setBounds(31, 11, 58, 40);
+        panel.add(btnVoltar);
+        
 		setSize(1500,750);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -101,5 +118,4 @@ public class ViewPagamentos extends JFrame {
 		new ViewPagamentos();
 		
 	}
-
 }

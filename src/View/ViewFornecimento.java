@@ -216,6 +216,7 @@ public class ViewFornecimento extends JFrame {
 			String linha=(String) listNomePr.getSelectedValue();
 			txtNome.setText(linha);
 			obj6.BuscarProduto2(txtId, txtNome, txtPreco, txtNomeFornecedor, txtQuantEsto, txtDescricao, lblFoto);
+			scrProdutos.setVisible(false);
 	}
 	
 	
