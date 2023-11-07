@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Model.CadastroFuncionario;
+
 public class ViewMenuFuncionario extends JFrame {
 	/**
 	 * 
@@ -24,6 +26,7 @@ public class ViewMenuFuncionario extends JFrame {
 
 	JButton btnPerfil = new JButton();
 	JPanel painelUsuario = new JPanel();
+	JLabel lblPerfil=new JLabel("Seu Perfil");
 	JLabel lblFotoUser = new JLabel();
 	JLabel lblNomeUser = new JLabel("Nome de Usuário:");
 	JLabel lblNomeUserRet= new JLabel("");
@@ -35,6 +38,8 @@ public class ViewMenuFuncionario extends JFrame {
 	JLabel lblEmailUserRet= new JLabel("");
     JButton btnVoltarPerfil=new JButton();
     JButton btnSairConta=new JButton();
+    JLabel lblTelefone= new JLabel("Telefone");
+	JLabel teleRet= new JLabel("");
 	Border borda2= BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE);
 	int x = 280;
 	int y = 0;
@@ -62,26 +67,25 @@ public class ViewMenuFuncionario extends JFrame {
 		JButton estoqueButton = new JButton("VISUALIZAR ESTOQUE");
 		estoqueButton.setBounds(804,430,207,50);
 		
-//		estoqueButton.setOpaque(false);
-//		estoqueButton.setContentAreaFilled(false);
-//		estoqueButton.setBorderPainted(false);
+		estoqueButton.setOpaque(false);
+		estoqueButton.setContentAreaFilled(false);
+		estoqueButton.setBorderPainted(false);
 		
 		estoqueButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
                new ViewEstoque(); 	
-               dispose();
+              // dispose();
 			}
 		});
 		
 		JButton pagamentoButton = new JButton("VENDA");
 		pagamentoButton.setBounds(804,611,207,50);
-		
-//	    pagamentoButton.setOpaque(false);
-//		pagamentoButton.setContentAreaFilled(false);
-//		pagamentoButton.setBorderPainted(false);
-		
+		pagamentoButton.setOpaque(false);
+		pagamentoButton.setContentAreaFilled(false);
+		pagamentoButton.setBorderPainted(false);
+
 		pagamentoButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -93,16 +97,17 @@ public class ViewMenuFuncionario extends JFrame {
 		
 		JButton reporButton = new JButton("ESTOQUE+");
 		reporButton.setBounds(804,236,207,59);
-//		 cadastrarButton.setOpaque(false);
-//	     cadastrarButton.setContentAreaFilled(false);
-//		 cadastrarButton.setBorderPainted(false);
+		reporButton.setOpaque(false);
+		reporButton.setContentAreaFilled(false);
+		reporButton.setBorderPainted(false);
+
 		 
 		 reporButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-               new ViewFornecimento();			
+                 new ViewFornecimento();			
+                 dispose();
 			}
 		});
 			
@@ -181,6 +186,10 @@ public class ViewMenuFuncionario extends JFrame {
 			}
 		});
 
+		lblPerfil.setBounds(50,25,200,25);
+		lblPerfil.setFont(new Font("Tox Typewriter",Font.BOLD,25));
+		lblPerfil.setForeground(Color.white); 
+
 		lblFotoUser.setBounds(50, 90, 150, 150);
 		lblFotoUser.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgPerfil.PNG")));
 		lblFotoUser.setBorder(borda2);
@@ -213,6 +222,14 @@ public class ViewMenuFuncionario extends JFrame {
 		lblIdadeUserRet.setFont(new Font("Tox Typewriter",Font.BOLD,20));
 		lblIdadeUserRet.setForeground(Color.WHITE);
 		
+		lblTelefone.setBounds(20,530,400,20);
+		lblTelefone.setFont(new Font("Georgia",Font.BOLD,20));
+		lblTelefone.setForeground(Color.WHITE);
+
+		teleRet.setBounds(20,563,200,20);
+		teleRet.setFont(new Font("Tox Typewriter",Font.BOLD,20));
+		teleRet.setForeground(Color.WHITE);
+		
 		btnSairConta.setBounds(10,600,130,30);
 		btnSairConta.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnSairConta.PNG")));
 		btnSairConta.addActionListener(new ActionListener() {
@@ -231,11 +248,18 @@ public class ViewMenuFuncionario extends JFrame {
 		painelUsuario.add(lblNomeCompletoRet);
 		painelUsuario.add(lblEmailUser);
 		painelUsuario.add(lblEmailUserRet);
-		painelUsuario.add(lblIdadeUser);
-		painelUsuario.add(lblIdadeUserRet);
+		//painelUsuario.add(lblIdadeUser);
+		//painelUsuario.add(lblIdadeUserRet);
+		painelUsuario.add(lblPerfil);
+
+		painelUsuario.add(lblTelefone);
+		painelUsuario.add(teleRet);
         painelUsuario.add(btnVoltarPerfil);
         painelUsuario.add(btnSairConta);
-
+        
+        CadastroFuncionario obj= new CadastroFuncionario();
+     obj.MostrarDadosUser(lblFotoUser, lblNomeUserRet, lblNomeCompletoRet, lblEmailUserRet, teleRet);
+        
 	}
 	
 	public static void main(String [] args) {

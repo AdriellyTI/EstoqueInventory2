@@ -35,7 +35,7 @@ public class Logo extends JFrame {
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel(new ImageIcon(Logo.class.getResource("/Imagens/ImagemLogo.png")));
 		panel.setLayout(null);
-		setUndecorated (true);
+		//setUndecorated (true);
 		this.setLocationRelativeTo(null);
 
         label.setBounds(-120,-130,1600,900);
@@ -86,7 +86,7 @@ public class Logo extends JFrame {
 		panel.add(cadastrarButton); 
 		panel.add(entrarButton);
 		getContentPane().add(panel);
-		panel.add(btnSair);
+		//panel.add(btnSair);
 		setVisible(true);
 	}
 		

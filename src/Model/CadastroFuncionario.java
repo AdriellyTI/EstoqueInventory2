@@ -1,5 +1,21 @@
 package Model;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import ModelDAO.Conexao;
+
 public class CadastroFuncionario {
 
 	private int idFuncionario;
@@ -13,7 +29,15 @@ public class CadastroFuncionario {
 	public CadastroFuncionario() {
 		
 	}
-			
+	Connection conn;
+	 
+	 PreparedStatement stm ;
+	 ResultSet rs;
+	 
+	 public CadastroFuncionario(Connection conn) {
+		this.conn=conn;
+	}
+	 	
 	
 	public CadastroFuncionario(String nome, String userName, String dataNasc, String telefone, String email,
 			String senha) {
@@ -74,7 +98,45 @@ public class CadastroFuncionario {
 	}
 	
 	
-	
+	public void MostrarDadosUser(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel teleRet) {
+		 String url = "SELECT *FROM Funcionario";
+	     try { 
+	    	 conn=new Conexao().getConnection();
+	    	 stm = conn.prepareStatement(url);
+	    	 rs=stm.executeQuery();
+	    	 
+	  		if (rs.next()) {
+	  		
+	          Blob  blob=(Blob) rs.getBlob("foto");
+	          
+	          byte[] img=blob.getBytes(1, (int) blob.length());
+	          BufferedImage  image=null;
+	          
+	          try {
+	          image=ImageIO.read(new ByteArrayInputStream(img));
+	          
+	          } catch (Exception e) {
+	        	  System.out.println(e);
+			}
+	          ImageIcon icone= new ImageIcon(image);
+	          Icon foto= new ImageIcon(icone.getImage().getScaledInstance(lblFotoUser.getWidth(), lblFotoUser.getHeight(), Image.SCALE_SMOOTH));
+	          lblFotoUser.setIcon(foto);
+	          
+	          lblNomeUserRet.setText(rs.getString("userName"));
+	          lblNomeCompletoRet.setText(rs.getString("nomeCompleto"));
+	          lblEmailUserRet.setText(rs.getString("email"));
+	          teleRet.setText(rs.getString("tele"));
+	  		}else {
+				 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
+	             conn.close();
+	  		}
+	    	  
+	    	 
+	     }catch (Exception ex) {
+	    	 System.out.println(ex);
+	     }
+		
+	}
 	
 }
 	

@@ -56,6 +56,8 @@ public class ViewMenuAdministrador extends JFrame {
 	JLabel lblIdadeUserRet = new JLabel("");
 	JLabel lblEmailUser = new JLabel("E-MAIL:");
 	JLabel lblEmailUserRet= new JLabel("");
+	JLabel lblTelefone= new JLabel("Telefone");
+	JLabel teleRet= new JLabel("");
     JButton btnVoltarPerfil=new JButton();
     JButton btnSairConta=new JButton();
     
@@ -89,7 +91,7 @@ public class ViewMenuAdministrador extends JFrame {
 		getContentPane().add(label);
 
 		JButton btnFuncionarios = new JButton("FUNCIONÁRIOS");
-		btnFuncionarios.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 21));
+		btnFuncionarios.setFont(new Font("Tox Typewriter", Font.BOLD, 21));
 		btnFuncionarios.setBackground(Color.WHITE);
 		btnFuncionarios.setBounds(1028, 337, 200, 57);
 		getContentPane().add(btnFuncionarios);
@@ -102,7 +104,7 @@ public class ViewMenuAdministrador extends JFrame {
 
 		JButton btnVendas = new JButton("VENDAS");
 		btnVendas.setBackground(Color.WHITE);
-		btnVendas.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 25));
+		btnVendas.setFont(new Font("Tox Typewriter", Font.BOLD, 25));
 		btnVendas.setBounds(657, 337, 200, 57);
 		getContentPane().add(btnVendas);
 		btnVendas.addActionListener(new ActionListener() {
@@ -114,7 +116,7 @@ public class ViewMenuAdministrador extends JFrame {
 
 		JButton btnFornecimento = new JButton("FORNECIEMENTO");
 		btnFornecimento.setBackground(Color.WHITE);
-		btnFornecimento.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 21));
+		btnFornecimento.setFont(new Font("Tox Typewriter", Font.BOLD, 21));
 		btnFornecimento.setBounds(1028, 584, 200, 51);
 		getContentPane().add(btnFornecimento);
 		btnFornecimento.addActionListener(new ActionListener() {
@@ -157,7 +159,7 @@ public class ViewMenuAdministrador extends JFrame {
 		});
 
 		JButton btnEstoque = new JButton("ESTOQUE");
-		btnEstoque.setFont(new Font("Tox Typewriter.ttf", Font.BOLD, 25));
+		btnEstoque.setFont(new Font("Tox Typewriter", Font.BOLD, 25));
 		btnEstoque.setBackground(Color.WHITE);
 
 		btnEstoque.setBounds(668, 584, 200, 57);
@@ -170,6 +172,9 @@ public class ViewMenuAdministrador extends JFrame {
 		});
 		btnPerfilUser.setBounds(84,0,55,34);
 		getContentPane().add(btnPerfilUser);
+		btnPerfilUser.setOpaque(false);
+		btnPerfilUser.setContentAreaFilled(false);
+		btnPerfilUser.setBorderPainted(false);
 		btnPerfilUser.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -419,6 +424,14 @@ public class ViewMenuAdministrador extends JFrame {
 		lblIdadeUserRet.setFont(new Font("Tox Typewriter",Font.BOLD,20));
 		lblIdadeUserRet.setForeground(Color.WHITE);
 		
+		lblTelefone.setBounds(20,530,400,20);
+		lblTelefone.setFont(new Font("Georgia",Font.BOLD,20));
+		lblTelefone.setForeground(Color.WHITE);
+
+		teleRet.setBounds(20,563,200,20);
+		teleRet.setFont(new Font("Tox Typewriter",Font.BOLD,20));
+		teleRet.setForeground(Color.WHITE);
+
 		btnSairConta.setBounds(10,600,130,30);
 		btnSairConta.setIcon(new ImageIcon(ViewMenuAdministrador.class.getResource("/Imagens/imgBtnSairConta.PNG")));
 		btnSairConta.addActionListener(new ActionListener() {
@@ -437,12 +450,12 @@ public class ViewMenuAdministrador extends JFrame {
 		painelUsuario.add(lblNomeCompletoRet);
 		painelUsuario.add(lblEmailUser);
 		painelUsuario.add(lblEmailUserRet);
-		painelUsuario.add(lblIdadeUser);
-		painelUsuario.add(lblIdadeUserRet);
+		painelUsuario.add(lblTelefone);
+		painelUsuario.add(teleRet);
         painelUsuario.add(btnVoltarPerfil);
         painelUsuario.add(btnSairConta);
         
-       objC.mostrarDados(lblFotoUser,lblNomeUserRet,lblNomeCompletoRet,lblEmailUserRet,lblIdadeUserRet);
+       objC.mostrarDados(lblFotoUser,lblNomeUserRet,lblNomeCompletoRet,lblEmailUserRet,teleRet);
 	}
 
 	public static void main(String[] args) {

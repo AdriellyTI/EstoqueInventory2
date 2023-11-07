@@ -110,7 +110,7 @@ public class CadastroAdm {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public void MostrarDadosUser(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel lblIdadeUserRet) {
+	public void MostrarDadosUser(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel teleRet) {
 		 String url = "SELECT *FROM Administrador";
 	     try { 
 	    	 conn=new Conexao().getConnection();
@@ -137,6 +137,7 @@ public class CadastroAdm {
 	          lblNomeUserRet.setText(rs.getString("userName"));
 	          lblNomeCompletoRet.setText(rs.getString("nomeCompleto"));
 	          lblEmailUserRet.setText(rs.getString("email"));
+	          teleRet.setText(rs.getString("tele"));
 	  		}else {
 				 JOptionPane.showInternalMessageDialog(null, "Produto não cadastrado");
 	             conn.close();

@@ -54,8 +54,8 @@ public class ControllerCadastro {
 	}
 
 
-	public void mostrarDados(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel lblIdadeUserRet) {
-		administrador1.MostrarDadosUser(lblFotoUser,lblNomeUserRet,lblNomeCompletoRet,lblEmailUserRet,lblIdadeUserRet);
+	public void mostrarDados(JLabel lblFotoUser,JLabel lblNomeUserRet,JLabel lblNomeCompletoRet,JLabel lblEmailUserRet,JLabel teleRet) {
+		administrador1.MostrarDadosUser(lblFotoUser,lblNomeUserRet,lblNomeCompletoRet,lblEmailUserRet,teleRet);
 	}
 	
 	
