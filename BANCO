@@ -1,0 +1,240 @@
+CREATE DATABASE  EsttoqueMM;
+
+USE EsttoqueMM;
+DROP TABLE IF EXISTS Administrador;
+DROP TABLE IF EXISTS Funcionario;
+DROP TABLE IF EXISTS Fornecedoor;
+DROP TABLE IF EXISTS Produto;
+DROP TABLE IF EXISTS Recibo;
+
+CREATE TABLE Administrador (
+    idAdm INT NOT NULL AUTO_INCREMENT,
+    nomeCompleto VARCHAR(200) NOT NULL,
+    userName VARCHAR(100) UNIQUE NOT NULL,
+    dataNasc DATE NOT NULL,
+    tele VARCHAR(12) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(50) NOT NULL,
+	foto longblob ,
+    PRIMARY KEY (idAdm)
+);
+
+
+CREATE TABLE Funcionario (
+    idFuncionario INT NOT NULL AUTO_INCREMENT,
+    nomeCompleto VARCHAR(200) NOT NULL,
+    userName VARCHAR(100) UNIQUE NOT NULL,
+    dataNasc DATE NOT NULL,
+    tele VARCHAR(15) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(8) NOT NULL,
+    foto LONGBLOB,
+    status_funcionario VARCHAR (7),
+    PRIMARY KEY (idFuncionario)
+);
+
+CREATE TABLE Funcionarios_Inativos(
+ 
+ id_Funcionario INT NOT NULL,
+ nome_Funcionario VARCHAR (200)NOT NULL,
+ telefone VARCHAR (15) NOT NULL,
+ data_demissao DATE NULL,
+ motivo_demissao TEXT,
+ status_ VARCHAR (7)
+);
+
+DELIMITER $
+
+CREATE TRIGGER Tgr_Status AFTER INSERT
+ON Funcionarios_Inativos
+FOR EACH ROW
+BEGIN
+	UPDATE Funcionario SET status_funcionario = 'INATIVO'
+WHERE idFuncionario = NEW.id_Funcionario;
+END$
+
+DELIMITER ;
+
+
+CREATE TABLE Fornecedoor(
+    idFornecedor INT NOT NULL AUTO_INCREMENT,
+    nomeEmpresa VARCHAR(200) NOT NULL,
+    cnpj VARCHAR(15) NOT NULL,
+    teleComercial VARCHAR(12) NOT NULL,
+    emailComercial VARCHAR(30) NOT NULL,
+    teleRepre VARCHAR(12) NOT NULL,
+    produtoForn VARCHAR(200) NOT NULL,
+    PRIMARY KEY (idFornecedor)
+);
+
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco_Compra DECIMAL(10, 2) NOT NULL,
+    preco_venda DECIMAL(10,2)NOT NULL,
+    quantidade INT NOT NULL,
+    nome_fornecedor VARCHAR(255),
+    descricao TEXT,
+    foto longblob
+);
+CREATE TABLE Recibo (
+    codigoVenda INT PRIMARY KEY AUTO_INCREMENT,
+     data DATE NOT NULL,
+     nomeCliente VARCHAR(100) NOT NULL,
+  precoDeCompra INT DEFAULT 0,
+  numeroDePecas DECIMAL(10, 2),
+     valorTotal DECIMAL(10, 2),
+     formaPagamento VARCHAR(100) NOT NULL,
+     idProduto INT NOT NULL
+);
+
+DELIMITER $
+
+CREATE TRIGGER Atualizae_Venda AFTER INSERT
+ON Recibo
+FOR EACH ROW
+BEGIN
+	UPDATE Produtos SET quantidade = quantidade -NEW.numeroDePecas
+WHERE id = NEW.idProduto;
+END$
+
+DELIMITER ;
+INSERT INTO Recibo (data, nomeCliente, precoDeCompra, numeroDePecas, valorTotal, formaPagamento, idProduto)
+VALUES
+('2023-11-24', 'Cliente A', 500, 10, 150.50, 'Cartão de Crédito', 1),
+('2023-11-25', 'Cliente B', 700, 15, 225.75, 'Dinheiro', 2),
+('2023-11-26', 'Cliente C', 600, 12, 180.00, 'Transferência Bancária', 3);
+
+DELIMITER $
+
+CREATE TRIGGER Preco_prod AFTER INSERT
+ON Fornecimento
+FOR EACH ROW
+BEGIN
+    UPDATE Recibo
+    SET precoDeCompra = NEW.precoProd
+    WHERE idProduto = NEW.id_produto;
+END$
+
+DELIMITER ;
+CREATE TABLE Fornecimento(
+
+codigo INT AUTO_INCREMENT PRIMARY KEY,
+data DATE NOT NULL,
+quantidadeForn INT NOT NULL,
+quantidadeEsto INT NOT NULL,
+nome_prduto VARCHAR (90) NOT NULL,
+id_produto  INT NOT NULL,
+nome_fornecedor VARCHAR(90) NOT NULL,
+precoProd decimal (10,2),
+valor_da_Compra DECIMAL (10,2)
+);
+
+
+
+INSERT INTO Fornecimento (data, quantidadeForn, quantidadeEsto, nome_prduto, id_produto, nome_fornecedor, precoProd, valor_da_Compra)
+VALUES
+('2023-11-24', 100, 50, 'Produto A', 1, 'Fornecedor XYZ', 10.99, 1099.00),
+('2023-11-25', 150, 75, 'Produto B', 2, 'Fornecedor ABC', 15.75, 2362.50),
+('2023-11-26', 200, 100, 'Produto C', 3, 'Fornecedor DEF', 20.50, 4100.00);
+
+INSERT INTO Fornecimento (data, quantidadeForn, quantidadeEsto, nome_prduto, id_produto, nome_fornecedor, precoProd, valor_da_Compra)
+VALUES ('2023-11-18', 70, 35, 'Produto K', 11, 'Fornecedor 2', 9.99, 699.30);
+
+INSERT INTO Fornecimento (data, quantidadeForn, quantidadeEsto, nome_prduto, id_produto, nome_fornecedor, precoProd, valor_da_Compra)
+VALUES ('2023-12-01', 190, 95, 'Produto L', 12, 'Fornecedor 3', 25.50, 4845.00);
+------------------------------------------------------------------------------------------------------------
+INSERT INTO Fornecedoor (nomeEmpresa, cnpj, teleComercial, emailComercial, teleRepre, produtoForn) VALUES
+('Fornecedor 1', '12345678901234', '1234567890', 'fornecedor1@email.com', '9876543210', 'Produto A'),
+('Fornecedor 2', '23456789012345', '2345678901', 'fornecedor2@email.com', '8765432109', 'Produto B'),
+('Fornecedor 3', '34567890123456', '3456789012', 'fornecedor3@email.com', '7654321098', 'Produto C'),
+('Fornecedor 4', '45678901234567', '4567890123', 'fornecedor4@email.com', '6543210987', 'Produto D'),
+('Fornecedor 5', '56789012345678', '5678901234', 'fornecedor5@email.com', '5432109876', 'Produto E'),
+('Fornecedor 6', '67890123456789', '6789012345', 'fornecedor6@email.com', '4321098765', 'Produto F'),
+('Fornecedor 7', '78901234567890', '7890123456', 'fornecedor7@email.com', '3210987654', 'Produto G'),
+('Fornecedor 8', '89012345678901', '8901234567', 'fornecedor8@email.com', '2109876543', 'Produto H'),
+('Fornecedor 9', '90123456789012', '9012345678', 'fornecedor9@email.com', '1098765432', 'Produto I'),
+('Fornecedor 10', '01234567890123', '0123456789', 'fornecedor10@email.com', '0987654321', 'Produto J'),
+('Fornecedor 11', '12345678901234', '1234567890', 'fornecedor11@email.com', '9876543210', 'Produto K'),
+('Fornecedor 12', '23456789012345', '2345678901', 'fornecedor12@email.com', '8765432109', 'Produto L'),
+('Fornecedor 13', '34567890123456', '3456789012', 'fornecedor13@email.com', '7654321098', 'Produto M'),
+('Fornecedor 14', '45678901234567', '4567890123', 'fornecedor14@email.com', '6543210987', 'Produto N'),
+('Fornecedor 15', '56789012345678', '5678901234', 'fornecedor15@email.com', '5432109876', 'Produto O'),
+('Fornecedor 16', '67890123456789', '6789012345', 'fornecedor16@email.com', '4321098765', 'Produto P'),
+('Fornecedor 17', '78901234567890', '7890123456', 'fornecedor17@email.com', '3210987654', 'Produto Q'),
+('Fornecedor 18', '89012345678901', '8901234567', 'fornecedor18@email.com', '2109876543', 'Produto R'),
+('Fornecedor 19', '90123456789012', '9012345678', 'fornecedor19@email.com', '1098765432', 'Produto S'),
+('Fornecedor 20', '01234567890123', '0123456789', 'fornecedor20@email.com', '0987654321', 'Produto T');
+INSERT INTO Fornecedoor (nomeEmpresa, cnpj, teleComercial, emailComercial, teleRepre, produtoForn) VALUES
+('Empresa A', '12345678901234', '1234567890', 'empresaA@email.com', '9876543210', 'Produto A'),
+('Empresa B', '23456789012345', '2345678901', 'empresaB@email.com', '8765432109', 'Produto B'),
+('Empresa C', '34567890123456', '3456789012', 'empresaC@email.com', '7654321098', 'Produto C'),
+('Empresa D', '45678901234567', '4567890123', 'empresaD@email.com', '6543210987', 'Produto D'),
+('Empresa E', '56789012345678', '5678901234', 'empresaE@email.com', '5432109876', 'Produto E'),
+('Empresa F', '67890123456789', '6789012345', 'empresaF@email.com', '4321098765', 'Produto F'),
+('Empresa G', '78901234567890', '7890123456', 'empresaG@email.com', '3210987654', 'Produto G'),
+('Empresa H', '89012345678901', '8901234567', 'empresaH@email.com', '2109876543', 'Produto H'),
+('Empresa I', '90123456789012', '9012345678', 'empresaI@email.com', '1098765432', 'Produto I'),
+('Empresa J', '01234567890123', '0123456789', 'empresaJ@email.com', '0987654321', 'Produto J');
+
+-- Inserir dados na tabela Funcionario
+INSERT INTO Funcionario (nomeCompleto, userName, dataNasc, tele, email, senha, foto) 
+VALUES 
+('João Silva', 'joao.silva', '1990-05-15', '(11) 1234-5678', 'joao.silva@email.com', 'senha123', NULL),
+('Maria Oliveira', 'maria.oliveira', '1985-08-20', '(21) 9876-5432', 'maria.oliveira@email.com', 'senha456', NULL),
+('Carlos Santos', 'carlos.santos', '1982-12-10', '(31) 8765-4321', 'carlos.santos@email.com', 'senha789', NULL),
+('Ana Pereira', 'ana.pereira', '1995-04-03', '(41) 7654-3210', 'ana.pereira@email.com', 'senhaabc', NULL),
+('Roberto Lima', 'roberto.lima', '1988-06-25', '(51) 5432-1098', 'roberto.lima@email.com', 'senhadef', NULL),
+('Juliana Costa', 'juliana.costa', '1993-09-12', '(61) 4321-0987', 'juliana.costa@email.com', 'senhaghi', NULL),
+('Fernando Oliveira', 'fernando.oliveira', '1980-02-18', '(71) 2109-8765', 'fernando.oliveira@email.com', 'senhajkl', NULL),
+('Patrícia Rocha', 'patricia.rocha', '1998-11-30', '(81) 1098-7654', 'patricia.rocha@email.com', 'senhamno', NULL),
+('Ricardo Almeida', 'ricardo.almeida', '1987-07-08', '(91) 8765-4321', 'ricardo.almeida@email.com', 'senhapqr', NULL),
+('Camila Santos', 'camila.santos', '1991-03-05', '(01) 2345-6789', 'camila.santos@email.com', 'senhastu', NULL);
+
+
+DELIMITER $
+
+CREATE TRIGGER Tgr_AtualizarPr AFTER INSERT
+ON Fornecimento
+FOR EACH ROW
+BEGIN
+	UPDATE Produtos SET quantidade = quantidade + NEW.quantidadeForn
+WHERE id = NEW.id_produto;
+END$
+
+DELIMITER ;
+
+SELECT SUM(valorTotal) AS faturamento_total
+FROM Recibo;
+
+SELECT
+    p.nome AS nome_produto,
+    p.id AS id_produto,
+    SUM(r.valorTotal) AS faturamento_total
+FROM
+    Recibo r
+JOIN
+    produtos p ON r.id_produto = p.id
+GROUP BY
+    p.id, p.nome;
+  SELECT SUM(valorTotal - (numeroDePecas * precoDeCompra)) AS faturamento_total_sem_custo FROM Recibo;
+    SET SQL_SAFE_UPDATES = 1;
+
+SELECT * FROM produtos;
+SELECT * FROM Funcionario;
+SELECT * FROM Fornecedoor;
+SELECT * FROM Administrador;
+SELECT * FROM Recibo;
+SELECT *FROM Fornecimento;
+
+DROP TABLE Recibo;
+DROP DATABASE EsttoqueMM;
+DROP trigger Tgr_AtualizarPr;
+DROP trigger  calcular_valor_compra;
+DROP TABLE Administrador;
+DROP TABLE produtos;
+DROP TABLE Funcionario;
+DROP TABLE Fornecimento;
+describe Administrador;
+DELETE FROM Administrador WHERE idAdm = 1;
+DROP TRIGGER Preco_prod;
